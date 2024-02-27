@@ -1,5 +1,3 @@
-import { canvas, ctx, cellSize, cellGap, enemyPositions, enemies, frame, winningScore, enemiesInterval, score, cellGap, resources } from ‘./gameLogic.js’;
-
 class Enemy {
     // contains everything that we will need to be able to create the enemy
     // the speed can be changed to whatever we want it to be
@@ -36,5 +34,3 @@ class Enemy {
         ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
     }
 }
-
-export { Enemy };
