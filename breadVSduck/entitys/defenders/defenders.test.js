@@ -1,4 +1,4 @@
-const Defender = require('breadVSduck/entitys/defenders/defenders');
+const Defender = require('./defenders');
 
 describe('Defender Class', () => {
     test('Defender should be initialized with correct properties', () => {

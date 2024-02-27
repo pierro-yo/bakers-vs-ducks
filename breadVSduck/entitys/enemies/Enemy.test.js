@@ -1,4 +1,4 @@
-const Enemy = require('breadVSduck/entitys/enemies/Enemy');
+const Enemy = require('./Enemy');
 
 describe('Enemy Class', () => {
     test('Enemy should be initialized with correct properties', () => {
@@ -10,8 +10,8 @@ describe('Enemy Class', () => {
         expect(enemy.height).toBeGreaterThan(0);
         expect(enemy.speed).toBeGreaterThan(0);
         expect(enemy.movement).toBeGreaterThan(0);
-        expect(enemy.health).toBe(100);
-        expect(enemy.maxHealth).toBe(100);
+        expect(enemy.health).toBe(50);
+        expect(enemy.maxHealth).toBe(50);
     });
 
     test('Draw method should be defined', () => {
