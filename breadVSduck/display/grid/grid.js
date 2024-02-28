@@ -14,10 +14,10 @@ const cellGap = 3
 
 // holds data about each individual cell
 const gameGrid = []
-const projectiles = [];
-const defenders = [];
-const enemies = [];
-const enemyPositions = [];
+// const projectiles = [];
+// const defenders = [];
+// const enemies = [];
+// const enemyPositions = [];
 
 // mouse 
 const mouse = {
@@ -99,20 +99,6 @@ function handleGameGrid() {
 // The commented-out code above is an alternative way to achieve the same result using a traditional for loop.
     // It loops through each element in gameGrid (which represents a row) and calls the draw method for each cell.
     // However, using forEach is a concise and more modern approach.
-
-function animate() {
-    // this clears the cell, so only the highlighted cell will be shown
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = "gray"
-    ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
-    handleGameGrid();
-    handleEnemies();
-    handleDefenders();
-    handleProjectiles();
-    frame++;
-    console.log(frame);
-    requestAnimationFrame(animate)
-}
 
 createGrid()
 animate()

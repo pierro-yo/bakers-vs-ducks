@@ -1,8 +1,13 @@
-function init(){
-    for (let y = cellSize; y < canvas.height; y += cellSize){
-    for (let x = 0; x < canvas.width; x += cellSize){
-        gameGrid.push(new Cell(x, y));
-    } 
+function animate() {
+    // this clears the cell, so only the highlighted cell will be shown
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = "gray"
+    ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
+    handleGameGrid();
+    // handleEnemies();
+    //handleDefenders();
+    // handleProjectiles();
+    frame++;
+    console.log(frame);
+    requestAnimationFrame(animate)
 }
-}
-init();
