@@ -37,4 +37,3 @@ class Defender {
         }
     }
 }
-export { Defender };
