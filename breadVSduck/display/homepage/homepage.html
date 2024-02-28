@@ -1,14 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Bread vs Ducks</title>
   </head>
   <body>
-    <script></script>
-
     <h1>Bread vs Ducks</h1>
-    <button>Start Game</button>
-    <button onClick="Function">How to Play</button>
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="goToHowToPlay()">How to Play</button>
+
+    <script>
+      function startGame() {
+        // Add functionality for starting the game
+        console.log("Game started");
+      }
+
+      function goToHowToPlay() {
+        window.location.href = "../howToPlay/howToPlay.html";
+      }
+    </script>
   </body>
 </html>
