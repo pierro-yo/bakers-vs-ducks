@@ -1,7 +1,7 @@
 // Sets the current How To Play Instructions page to index 0
-var currentPageIndex = 0
+let currentPageIndex = 0
 // An array showing the text for each page of the How To Play Instructions
-var displayText = [
+let displayText = [
             "Page1 Text",
             "Page2 Text",
             "Page3 Text",
@@ -9,23 +9,20 @@ var displayText = [
         ]
 
 // Next Page Button
-var nextButton = document.getElementById("increasePageButton");
+const nextButton = document.getElementById("increasePageButton");
 // Reduce Page Button
-var backButton = document.getElementById("reducePageButton");
+const backButton = document.getElementById("reducePageButton");
 
 // Increases the page number for Instructions
-var increasePage = () => {
+const increasePage = () => {
     if (currentPageIndex < displayText.length - 1) {
             currentPageIndex += 1
             getDisplayText()
         } 
-        // console.log(currentPageIndex)
-        // console.log(displayText.length)
-    
     }
     
 // Decreases the page number for Instructions
-var reducePage = () => {
+const reducePage = () => {
         if (currentPageIndex > 0) {
             currentPageIndex -= 1
             getDisplayText()
@@ -33,7 +30,7 @@ var reducePage = () => {
     }
 
 // Gets the text for the relevant Instructions page from the displayText array based on the 'currentPageIndex'
-var getDisplayText = () => {
+const getDisplayText = () => {
     // Hides the back button on the instructions if you are on the first page of instructions
     if (currentPageIndex == 0) {
         backButton.style.display = "none"
@@ -46,12 +43,12 @@ var getDisplayText = () => {
     } else {
         nextButton.style.display = "block"
     }
-        var displayTextElement = document.getElementById("displayText");
+        const displayTextElement = document.getElementById("displayText");
         displayTextElement.textContent = displayText[currentPageIndex]
         return displayText[currentPageIndex]
     }
 
-var backToHomepage = () => {
+const backToHomepage = () => {
     window.location.href = "../homepage/homepage.html"
 }
 
