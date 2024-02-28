@@ -14,7 +14,7 @@ class Defender {
         this.projectiles = [];
         this.timer = 0;
         this.image = new Image()
-        this.image.src = "Images/baguetteBazooka.png"
+        this.image.src = "images/entityImages/baguetteBazooka.png"
     }
     draw() {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)

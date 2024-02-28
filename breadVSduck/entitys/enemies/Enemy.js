@@ -12,11 +12,11 @@ class Enemy {
         this.height = cellSize - cellGap * 2;
         this.speed = Math.random() * 0.2 + 0.4;
         this.movement = this.speed;
-        this.health = 50;
+        this.health = 100;
         this.maxHealth = this.health;
 
         this.image = new Image()
-        this.image.src = "images/duckWithCone.png"
+        this.image.src = "images/entityImages/duckWithCone.png"
     }
 
     // update function decreases the x axis to simulate the enemy moving closer to the bakery
