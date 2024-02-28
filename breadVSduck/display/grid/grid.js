@@ -4,6 +4,9 @@ canvas.width = 900
 canvas.height = 600
 
 // global variables
+const selectedDefender = 1;
+let gameOver = false;
+let frame = 0;
 
 // Each cell row will be 100px wide and 100px tall
 const cellSize = 100   
@@ -11,6 +14,10 @@ const cellGap = 3
 
 // holds data about each individual cell
 const gameGrid = []
+const projectiles = [];
+const defenders = [];
+const enemies = [];
+const enemyPositions = [];
 
 // mouse 
 const mouse = {
@@ -98,7 +105,12 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
-    handleGameGrid()
+    handleGameGrid();
+    handleEnemies();
+    handleDefenders();
+    handleProjectiles();
+    frame++;
+    console.log(frame);
     requestAnimationFrame(animate)
 }
 
