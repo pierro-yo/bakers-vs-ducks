@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bread vs Ducks</title>
+    <!-- Pulls in the js file for howToPlay which provides the different pages for the instructions -->
+    <script src="./howToPlay.js" defer></script>
+  </head>
+  <body>
+    <h1 id="howToPlayText">How To Play</h1>
+    <!-- Button to close instructions and take back to homepage -->
+    <button id="backToHomepage" onClick="backToHomepage()">Close</button>
+    <!-- Back button for going back a page on the instructions manual -->
+    <button id="reducePageButton" onClick="reducePage()">Back</button>
+    <p id="displayText"></p>
+     <!-- Forward button for going forward a page on the instructions manual -->
+    <button id="increasePageButton" onClick="increasePage()">Next</button>
+    
+  </body>
+</html>
