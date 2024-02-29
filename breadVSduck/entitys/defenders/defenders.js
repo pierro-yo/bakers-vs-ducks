@@ -13,8 +13,9 @@ class Defender {
         this.health = 100;
         this.projectiles = [];
         this.timer = 0;
+
         this.image = new Image()
-        this.image.src = "images/entityImages/baguetteBazooka.png"
+        this.image.src = "../../images/entityImages/baguetteBazooka100.png"
     }
     draw() {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
@@ -34,6 +35,29 @@ class Defender {
             }
         } else {
             this.timer = 0;
+        }
+    }
+}
+
+function handleDefenders(){
+    for (let i = 0; i < defenders.length; i++){
+        defenders[i].draw();
+        defenders[i].update();
+        if (enemyPositions.indexOf(defenders[i].y) !== -1){
+            defenders[i].shooting = true;
+        } else {
+            defenders[i].shooting = false;
+        }
+        for (let j = 0; j < enemies.length; j++){
+            if (defenders[i] && collision(defenders[i], enemies[j])){
+                enemies[j].movement = 0;
+                defenders[i].health -= 1;
+            }
+            if (defenders[i] && defenders[i].health <= 0){
+                defenders.splice(i, 1);
+                i--;
+                enemies[j].movement = enemies[j].speed;
+            }
         }
     }
 }
