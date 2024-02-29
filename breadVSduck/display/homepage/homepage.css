@@ -30,6 +30,14 @@ body {
     /* top:45%; */
 }
 
+#howToPlayButton2 {
+    position:relative;
+    left:65%;
+    /* top:45%; */
+}
+
+
+
 .button {
     width: 150px;
     height: 75px;
@@ -45,3 +53,16 @@ body {
     margin-bottom: 10px;
     vertical-align: top;
 }
+
+#howToPlayInstructions {
+    position: fixed;
+    width: 700px;
+    height: 400px;
+    background: green;
+    border: 1px solid black;
+    margin: auto;
+    top: 150px;
+    left: 100px;
+    z-index: 10;
+    display: none;
+}        
