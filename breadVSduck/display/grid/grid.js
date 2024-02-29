@@ -118,13 +118,14 @@ function animate() {
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
 
+    handleDefenders()
+    handleGameGrid()
 
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
     ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
     
-    handleDefenders()
-    handleGameGrid()
+    
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
@@ -133,6 +134,7 @@ function animate() {
 
     requestAnimationFrame(animate)
 }
+
 animate();
 
 // detects collisions between two rectangles
