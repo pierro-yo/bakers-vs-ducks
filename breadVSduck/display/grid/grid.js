@@ -44,7 +44,11 @@ function handleMouse(e) {
 }
 
 // game board
-const controlsBar = {
+const controlsBarTop = {
+    width: canvas.width,
+    height: cellSize,
+}
+const controlsBarBottom = {
     width: canvas.width,
     height: cellSize,
 }
@@ -108,24 +112,19 @@ canvas.addEventListener('click', function(){
 });
 
 
-    function animate() {
-        // this clears the cell, so only the highlighted cell will be shown
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        ctx.fillStyle = "gray"
-        ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
-    
-    
-        ctx.clearRect(0, 500, canvas.width, canvas.height)
-        ctx.fillStyle = "pink"
-        ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
+function animate() {
+    // this clears the cell, so only the highlighted cell will be shown
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = "gray"
+    ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
 
 
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
-    ctx.fillRect(0, 500, controlsBar2.width, controlsBar2.height)
+    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
     
     handleDefenders()
-        handleGameGrid()
+    handleGameGrid()
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
