@@ -12,12 +12,20 @@
     <script src="../grid/gridHome.js"></script>
     <button id="startGameButton" class="button" onclick="startGame()">Start Game</button>
     <div></div>
-    <button id="howToPlayButton" class="button" onclick="goToHowToPlay()">How to Play</button>
-    <button id="howToPlayButton2" class="button">How to Play 2</button>
-    <div id="howToPlayInstructions">
-      <h1>How To Play</h1>
-      <p>This will provide our instructions on how to play.</p>
-      <button id="close-button">Close</button>
+    <button id="howToPlayButton" class="button">How to Play</button>
+    <div id="howToPlayPopUp">
+      <h1 id="title">How To Play</h1>
+      <div id="instructions">
+        
+        <div class="buttonContainer">
+          <!-- Back button for going back a page on the instructions manual -->
+          <button id="reducePageButton" class = "arr left" onClick="howToPlay.reducePage()"><div></div></button>
+          <p id="displayText"></p>
+          <!-- Forward button for going forward a page on the instructions manual -->
+          <button id="increasePageButton" class = "arr right" onClick="howToPlay.increasePage()"><div></div></button>
+        </div> 
+        <button id="close-button">&times;</button>
+      </div>
     </div>          
   </div>
 

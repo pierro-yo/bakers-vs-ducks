@@ -23,7 +23,7 @@ function controlBarSetUp() {
     // This adds text to the control bar at the top of the homepage canvas
     var textTitle = "Bread vs Ducks"
     textWidth = ctx.measureText(textTitle).width
-    ctx.font = "30px Comic Sans MS";
+    ctx.font = "30px Arial";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
     ctx.fillText(textTitle, (canvas.width/2), controlsBar.height/2 + 10);
