@@ -45,3 +45,79 @@ body {
     margin-bottom: 10px;
     vertical-align: top;
 }
+
+#howToPlayPopUp {
+    position: fixed;
+    width: 700px;
+    height: 400px;
+    background: green;
+    border: 1px solid black;
+    margin: auto;
+    top: 150px;
+    left: 100px;
+    z-index: 10;
+    display: none;
+}       
+
+#title {
+    padding: 10px;
+    font-family: Arial;
+}
+
+#close-button {
+    position:absolute; 
+    right: 0px; 
+    top: 0px;
+    color: black;
+    font-size: 30px;
+}
+
+#instructions {
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial;
+}
+/* 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+} */
+
+#displayText {
+    display: inline;
+}
+
+.arr {
+    background: white;
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border: #202020;
+    border-radius: 100%;
+    margin: 15px;
+    transition: 0.4s ease; 
+    cursor: pointer;
+    display: inline
+}
+
+.arr div {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    border-top: 6px solid #202020;
+    border-left: 6px solid #202020;
+    transform: rotate(45deg);
+    left: 9px;
+    top: 13px;
+    padding: 5px
+}
+
+.right {
+    transform: rotate(90deg);
+    left: 50px;
+}
+
+.left {
+    transform: rotate(-90deg)
+}
+

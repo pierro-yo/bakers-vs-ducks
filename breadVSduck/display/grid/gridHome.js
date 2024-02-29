@@ -8,26 +8,27 @@ canvas.height = 600
 const cellSize = 100   
 const cellGap = 3
 
-// game board
+// Controls Bar
 const controlsBar = {
     width: canvas.width,
     height: cellSize,
 }
 
-function animate() {
-    // this clears the cell, so only the highlighted cell will be shown
+function controlBarSetUp() {
+    // This sets up the control bar at the top of the homepage canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
 
+    // This adds text to the control bar at the top of the homepage canvas
     var textTitle = "Bread vs Ducks"
     textWidth = ctx.measureText(textTitle).width
-    ctx.font = "30px Comic Sans MS";
+    ctx.font = "30px Arial";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
     ctx.fillText(textTitle, (canvas.width/2), controlsBar.height/2 + 10);
     requestAnimationFrame(animate)
 }
 
-animate()
+controlBarSetUp()
 
