@@ -16,7 +16,7 @@ class Enemy {
         this.maxHealth = this.health;
 
         this.image = new Image()
-        this.image.src = "../../images/entityImages/secretEnemy.png"
+        this.image.src = "../../images/entityImages/secretEnemy.jpeg"
     }
 
     // update function decreases the x axis to simulate the enemy moving closer to the bakery
