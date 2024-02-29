@@ -10,5 +10,8 @@ body {
     transform: translate(-50%, -50%);
     width: 900px;
     height: 600px;
-    background: white;
+    background: rgb(86, 184, 44);
+    background-image: url(/breadVSduck/images/roadbakerypond.png);
+    background-repeat: no-repeat;
+    background-size: 900px 500px;
 }

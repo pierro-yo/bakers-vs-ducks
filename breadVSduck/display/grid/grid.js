@@ -4,6 +4,7 @@ canvas.width = 900
 canvas.height = 600
 
 // global variables
+let sometext = "hello there"
 
 // Each cell row will be 100px wide and 100px tall
 const cellSize = 100   
@@ -56,7 +57,7 @@ class Cell {
 // takes the arguments of horizontal and vertical values creates a rectangle of that size at the given coordinates
     draw() {
         if (mouse.x && mouse.y && collision(this, mouse)) {
-            ctx.strokeStyle = "black"
+            ctx.strokeStyle = "white"
             ctx.strokeRect(this.x, this.y, this.width, this.height)
         }
     }  
@@ -99,6 +100,13 @@ function animate() {
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
     handleGameGrid()
+
+// playing around with putting a score in the top part
+    ctx.fillStyle = "black"
+    ctx.font = "20px Arial"
+    ctx.fillText(`${sometext}`, 20, 50)
+// -----------------------------------------
+
     requestAnimationFrame(animate)
 }
 
