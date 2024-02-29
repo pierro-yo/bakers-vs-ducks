@@ -4,18 +4,20 @@ class Defender {
     // these are just some default values for the time being
     // do not worry about the canvas (ctx/all of the x,y positions) stuff just yet, this is code that i have taken from
     // something that I have worked on this morning 27-02-24
-    constructor(x, y) {
+    constructor(dict, x, y) {
         this.x = x;
         this.y = y;
         this.width = cellSize - cellGap * 2;
         this.height = cellSize - cellGap * 2;
         this.shooting = false;
-        this.health = 100;
+        this.health = dict.health;
+        this.firerate = dict.firerate;
         this.projectiles = [];
         this.timer = 0;
 
         this.image = new Image()
-        this.image.src = "../../images/entityImages/baguetteBazooka100.png"
+        this.image.src = dict.image
+        console.log(dict)
     }
     draw() {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
@@ -30,7 +32,7 @@ class Defender {
     update() {
         if (this.shooting) {
             this.timer++;
-            if (this.timer % 100 === 0) {
+            if (this.timer % this.firerate === 0) {
                 projectiles.push(new Projectile(this.x + 70, this.y + 50));
             }
         } else {

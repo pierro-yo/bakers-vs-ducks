@@ -87,6 +87,13 @@ function createGrid() {
 
 createGrid();
 
+function handleSelectors() {
+    gameGrid.forEach(function(gameRow) {
+        gameRow.forEach(function(cell) {
+            cell.draw()
+        })
+    })}
+
 // This function iterates over each row (gameRow) in the gameGrid.
 function handleGameGrid() {
     gameGrid.forEach(function(gameRow) {
@@ -108,12 +115,23 @@ canvas.addEventListener('click', function(){
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
     }
-    defenders.push(new Defender(gridPositionX, gridPositionY));
+    defenders.push(new Defender({health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png"}, gridPositionX, gridPositionY));
+});
+
+canvas.addEventListener('click', function(){
+    const gridPositionX = mouse.x  - (mouse.x % cellSize) + cellGap;
+    const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
+    if (gridPositionY < cellSize) return;
+    for (let i = 0; i < defenders.length; i++){
+        if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
+    }
+    defenders.push(new Defender({health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png"}, gridPositionX, gridPositionY));
 });
 
 
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
+    handleSelectors()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
