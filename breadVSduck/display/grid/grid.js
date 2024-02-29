@@ -121,6 +121,7 @@ function animate() {
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
     ctx.fillRect(0, 500, controlsBar2.width, controlsBar2.height)
+    
     handleDefenders()
     handleGameGrid()
     requestAnimationFrame(animate)
