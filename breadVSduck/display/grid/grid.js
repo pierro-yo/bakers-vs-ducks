@@ -47,6 +47,10 @@ const controlsBar = {
     width: canvas.width,
     height: cellSize,
 }
+const controlsBar2 = {
+    width: canvas.width,
+    height: cellSize,
+}
 
 // creates one new cell by taking two arguments of horizontal and vertical values
 class Cell {
@@ -68,7 +72,7 @@ class Cell {
 // it then reaches the end of the row, the outer loop increments 'y' to move down to the next row,
 // and the inner loop starts again for the new row, filling in the positions horizontally.
 function createGrid() {
-    for (let y = cellSize; y < canvas.height + 100 - cellSize; y += cellSize) {
+    for (let y = cellSize; y < canvas.height - cellSize; y += cellSize) {
         gameRow = []
         for (let x = 0; x < canvas.width; x += cellSize) {
             gameRow.push(new Cell(x, y));
@@ -112,11 +116,15 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
+
+
+    ctx.clearRect(0, 500, canvas.width, canvas.height)
+    ctx.fillStyle = "pink"
+    ctx.fillRect(0, 500, controlsBar2.width, controlsBar2.height)
     handleDefenders()
     handleGameGrid()
     requestAnimationFrame(animate)
 }
-
 animate();
 
 // detects collisions between two rectangles
