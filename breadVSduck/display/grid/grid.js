@@ -41,7 +41,12 @@ function handleMouse(e) {
 }
 
 // game board
-const controlsBar = {
+const controlsBarTop = {
+    width: canvas.width,
+    height: cellSize,
+}
+
+const controlsBarBottom = {
     width: canvas.width,
     height: cellSize,
 }
@@ -94,13 +99,17 @@ function handleGameGrid() {
     // It loops through each element in gameGrid (which represents a row) and calls the draw method for each cell.
     // However, using forEach is a concise and more modern approach.
 
-function animate() {
-    // this clears the cell, so only the highlighted cell will be shown
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = "gray"
-    ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
-    handleGameGrid()
-
+    function animate() {
+        // this clears the cell, so only the highlighted cell will be shown
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = "gray"
+        ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
+    
+    
+        ctx.clearRect(0, 500, canvas.width, canvas.height)
+        ctx.fillStyle = "pink"
+        ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
+        handleGameGrid()
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
