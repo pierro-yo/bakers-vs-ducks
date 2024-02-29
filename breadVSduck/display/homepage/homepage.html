@@ -7,11 +7,13 @@
   </head>
   <body>
     <h1>Bread vs Ducks</h1>
+    <div id="homeGrid">
     <canvas id="canvasHome"></canvas>
     <script src="../grid/gridHome.js"></script>
-    <button onclick="startGame()">Start Game</button>
-    <button onclick="goToHowToPlay()">How to Play</button>
-
+    <button id="startGameButton" class="button" onclick="startGame()">Start Game</button>
+    <div></div>
+    <button id="howToPlayButton" class="button" onclick="goToHowToPlay()">How to Play</button>
+    </div>
     <script>
       function startGame() {
         // Add functionality for starting the game

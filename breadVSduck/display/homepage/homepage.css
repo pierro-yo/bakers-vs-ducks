@@ -2,7 +2,7 @@ body {
     background: black
 }
 
-#canvasHome {
+#canvasHome, #homeGrid {
     border: 1px solid white;
     position: absolute;
     top: 50%;
@@ -11,4 +11,37 @@ body {
     width: 900px;
     height: 600px;
     background: white;
+}
+
+#homeGrid {
+    display: flex
+}
+
+#startGameButton {
+    position:relative;
+    left:40%;
+    top:45%;
+    align-items: center
+}
+
+#howToPlayButton {
+    position:relative;
+    left:65%;
+    /* top:45%; */
+}
+
+.button {
+    width: 150px;
+    height: 75px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    vertical-align: top;
 }
