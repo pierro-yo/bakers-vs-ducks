@@ -18,6 +18,7 @@ closeButton.addEventListener("click", function () {
     popupWindow.style.display = "none";
     // How to play button is shown when popup window is closed
     howToPlayButton.style.display = "block";
+    // Set the current Page index back to 0 when the instructions are closed
 });
 
 // Class to set up the functions and variables needed to display the instructions
@@ -28,7 +29,7 @@ class HowToPlay {
         this.currentPageIndex = 0;
         // An array showing the text for each page of the How To Play Instructions
         this.displayText = [
-            "Instructions for how to play - page 1, let's learn how to play",
+            "Instructions for how to play - page 1, let's learn how to play, lots more text being added here to test paragraph",
             "Instructions for how to play - page 2",
             "Instructions for how to play - page 3",
             "Instructions for how to play - page 4",
@@ -58,24 +59,23 @@ class HowToPlay {
         // Reduce Page Button
         const backButton = document.getElementById("reducePageButton");
         // Hides the back button on the instructions if you are on the first page of instructions
+        // Still keeps the space needed for the button (using visibility attribute)
         if (this.currentPageIndex == 0) {
-            backButton.style.display = "none";
+            backButton.style.visibility = "hidden";
         } else {
-            backButton.style.display = "inline";
+            backButton.style.visibility = "visible";
         }
         // Hides the next button on the instructions if you are on the last page of the instructions
+        // Still keeps the space needed for the button (using visibility attribute)
         if (this.currentPageIndex == this.displayText.length - 1) {
-            nextButton.style.display = "none";
+            nextButton.style.visibility = "hidden";
         } else {
-            nextButton.style.display = "inline";
+            nextButton.style.visibility = "visible";
         }
         const displayTextElement = document.getElementById("displayText");
         displayTextElement.textContent =
             this.displayText[this.currentPageIndex];
         return this.displayText[this.currentPageIndex];
-    }
-    backToHomepage() {
-        window.location.href = "../homepage/homepage.html";
     }
 }
 // Creates a new instance of the HowToPlay
