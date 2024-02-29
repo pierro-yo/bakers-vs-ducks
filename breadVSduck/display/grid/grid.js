@@ -4,14 +4,20 @@ canvas.width = 900
 canvas.height = 600
 
 // global variables
+// Each cell row will be 100px wide and 100px tall
+const cellSize = 100   
+const cellGap = 3
 let sometext = "hello there"
+let numberOfResources = 300;
+let enemiesInterval = 600;
+let frame = 0;
+let gameOver = false;
+
 const defenders = [];
 const enemies = [];
 const enemyPositions = [];
 const projectiles = [];
-// Each cell row will be 100px wide and 100px tall
-const cellSize = 100   
-const cellGap = 3
+
 
 // holds data about each individual cell
 const gameGrid = []
@@ -53,22 +59,7 @@ const controlsBarBottom = {
     height: cellSize,
 }
 
-// creates one new cell by taking two arguments of horizontal and vertical values
-class Cell {
-    constructor(x, y) {
-        this.x = x
-        this.y = y
-        this.width = cellSize
-        this.height = cellSize
-    }
-// takes the arguments of horizontal and vertical values creates a rectangle of that size at the given coordinates
-    draw() {
-        if (mouse.x && mouse.y && collision(this, mouse)) {
-            ctx.strokeStyle = "white"
-            ctx.strokeRect(this.x, this.y, this.width, this.height)
-        }
-    }  
-}
+
 // this for loop repesenents rows. It starts at cellsize to give space for the top menu bar
 // it then reaches the end of the row, the outer loop increments 'y' to move down to the next row,
 // and the inner loop starts again for the new row, filling in the positions horizontally.
@@ -118,8 +109,10 @@ function animate() {
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
 
-    handleDefenders()
-    handleGameGrid()
+    handleGameGrid();
+    handleDefenders();
+    handleProjectiles();
+    handleEnemies();
 
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
