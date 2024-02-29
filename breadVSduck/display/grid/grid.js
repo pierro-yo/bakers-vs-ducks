@@ -4,7 +4,10 @@ canvas.width = 900
 canvas.height = 600
 
 // global variables
-
+const defenders = [];
+const enemies = [];
+const enemyPositions = [];
+const projectiles = [];
 // Each cell row will be 100px wide and 100px tall
 const cellSize = 100   
 const cellGap = 3
@@ -77,7 +80,7 @@ function createGrid() {
 // refers to the column
 }
 
-
+createGrid();
 
 // This function iterates over each row (gameRow) in the gameGrid.
 function handleGameGrid() {
@@ -93,17 +96,28 @@ function handleGameGrid() {
     // It loops through each element in gameGrid (which represents a row) and calls the draw method for each cell.
     // However, using forEach is a concise and more modern approach.
 
+canvas.addEventListener('click', function(){
+    const gridPositionX = mouse.x  - (mouse.x % cellSize) + cellGap;
+    const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
+    if (gridPositionY < cellSize) return;
+    for (let i = 0; i < defenders.length; i++){
+        if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
+    }
+    defenders.push(new Defender(gridPositionX, gridPositionY));
+});
+
+
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
+    handleDefenders()
     handleGameGrid()
     requestAnimationFrame(animate)
 }
 
-createGrid()
-animate()
+animate();
 
 // detects collisions between two rectangles
 function collision(first, second) {

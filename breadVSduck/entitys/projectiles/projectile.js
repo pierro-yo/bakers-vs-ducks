@@ -11,7 +11,7 @@ class Projectile {
         this.speed = 5;
 
         this.image = new Image()
-        this.image.src = "images/projectileImages/baguedited.png"
+        this.image.src = "breadVSduck/images/projectileImages/baguedited.png"
     }
     // this simulates the projectile moving by speed amount of pixels every time
     update(){
@@ -22,5 +22,25 @@ class Projectile {
         ctx.drawImage(this.image, this.x, this.y-20, this.width, this.height)
 
         ctx.beginPath();
+    }
+}
+
+function handleProjectiles(){
+    for (let i = 0; i < projectiles.length; i++){
+        projectiles[i].update();
+        projectiles[i].draw();
+
+        for (let j = 0; j < enemies.length; j++){
+            if (enemies[j] && projectiles[i] && collision(projectiles[i], enemies[j])){
+                enemies[j].health -= projectiles[i].power;
+                projectiles.splice(i, 1);
+                i--;
+            }
+        }
+
+        if (projectiles[i] && projectiles[i].x > canvas.width - cellSize){
+            projectiles.splice(i, 1);
+            i--;
+        }
     }
 }
