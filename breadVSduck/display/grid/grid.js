@@ -4,6 +4,7 @@ canvas.width = 900
 canvas.height = 600
 
 // global variables
+let sometext = "hello there"
 const defenders = [];
 const enemies = [];
 const enemyPositions = [];
@@ -47,10 +48,6 @@ const controlsBar = {
     width: canvas.width,
     height: cellSize,
 }
-const controlsBar2 = {
-    width: canvas.width,
-    height: cellSize,
-}
 
 // creates one new cell by taking two arguments of horizontal and vertical values
 class Cell {
@@ -63,7 +60,7 @@ class Cell {
 // takes the arguments of horizontal and vertical values creates a rectangle of that size at the given coordinates
     draw() {
         if (mouse.x && mouse.y && collision(this, mouse)) {
-            ctx.strokeStyle = "black"
+            ctx.strokeStyle = "white"
             ctx.strokeRect(this.x, this.y, this.width, this.height)
         }
     }  
@@ -111,11 +108,16 @@ canvas.addEventListener('click', function(){
 });
 
 
-function animate() {
-    // this clears the cell, so only the highlighted cell will be shown
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = "gray"
-    ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
+    function animate() {
+        // this clears the cell, so only the highlighted cell will be shown
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = "gray"
+        ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
+    
+    
+        ctx.clearRect(0, 500, canvas.width, canvas.height)
+        ctx.fillStyle = "pink"
+        ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
 
 
     ctx.clearRect(0, 500, canvas.width, canvas.height)
@@ -123,7 +125,13 @@ function animate() {
     ctx.fillRect(0, 500, controlsBar2.width, controlsBar2.height)
     
     handleDefenders()
-    handleGameGrid()
+        handleGameGrid()
+// playing around with putting a score in the top part
+    ctx.fillStyle = "black"
+    ctx.font = "20px Arial"
+    ctx.fillText(`${sometext}`, 20, 50)
+// -----------------------------------------
+
     requestAnimationFrame(animate)
 }
 animate();
