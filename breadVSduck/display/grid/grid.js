@@ -68,7 +68,7 @@ class Cell {
 // it then reaches the end of the row, the outer loop increments 'y' to move down to the next row,
 // and the inner loop starts again for the new row, filling in the positions horizontally.
 function createGrid() {
-    for (let y = cellSize; y < canvas.height - cellSize; y += cellSize) {
+    for (let y = cellSize; y < canvas.height + 100 - cellSize; y += cellSize) {
         gameRow = []
         for (let x = 0; x < canvas.width; x += cellSize) {
             gameRow.push(new Cell(x, y));
