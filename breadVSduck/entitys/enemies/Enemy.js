@@ -50,7 +50,7 @@ function handleEnemies(){
           }
     }
     if (frame % enemiesInterval === 0){
-        let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
+        let verticalPosition = Math.floor(Math.random() * 4 + 1) * cellSize + cellGap;
         enemies.push(new Enemy(verticalPosition));
         enemyPositions.push(verticalPosition);
         if (enemiesInterval > 120) enemiesInterval -= 50;
