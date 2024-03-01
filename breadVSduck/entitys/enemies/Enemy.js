@@ -43,6 +43,11 @@ function handleEnemies(){
             gameOver = true;
         }
         if (enemies[i].health <= 0){
+            
+            let gainedResources = enemies[i].maxHealth/10;
+            numberOfResources += gainedResources;
+            score += gainedResources;
+
             const findThisIndex = enemyPositions.indexOf(enemies[i].y);
             enemyPositions.splice(findThisIndex, 1);
             enemies.splice(i, 1);
