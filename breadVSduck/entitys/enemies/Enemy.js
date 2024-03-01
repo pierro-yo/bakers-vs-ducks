@@ -43,8 +43,12 @@ function handleEnemies(){
             gameOver = true;
         }
         if (enemies[i].health <= 0){
-            
+
             let gainedResources = enemies[i].maxHealth/10;
+
+            floatingMessages.push(new floatingMessage('+' + gainedResources, enemies[i].x, enemies[i].y, 30, 'gold'));
+            floatingMessages.push(new floatingMessage('+' + gainedResources, 250, 50, 30, 'gold'));
+
             numberOfResources += gainedResources;
             score += gainedResources;
 

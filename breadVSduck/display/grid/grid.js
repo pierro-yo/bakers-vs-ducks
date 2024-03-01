@@ -14,6 +14,7 @@ let frame = 0;
 let gameOver = false;
 let score = 0;
 
+const floatingMessages = [];
 const defenders = [];
 const enemies = [];
 const enemyPositions = [];
@@ -120,6 +121,8 @@ canvas.addEventListener('click', function(){
     if (numberOfResources >= defenderCost) {
         defenders.push(new Defender(gridPositionX, gridPositionY));
         numberOfResources -= defenderCost;
+    } else {
+        floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'gold'));
     }
 });
 
@@ -134,6 +137,7 @@ function animate() {
     handleDefenders();
     handleProjectiles();
     handleEnemies();
+    handleFloatingMessages();
     frame++;
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
