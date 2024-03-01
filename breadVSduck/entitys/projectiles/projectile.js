@@ -11,7 +11,7 @@ class Projectile {
         this.speed = 5;
 
         this.image = new Image()
-        this.image.src = "breadVSduck/images/projectileImages/baguedited.png"
+        this.image.src = "../../images/projectileImages/baguedited.png"
     }
     // this simulates the projectile moving by speed amount of pixels every time
     update(){
