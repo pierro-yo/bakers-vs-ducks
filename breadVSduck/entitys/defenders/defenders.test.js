@@ -16,7 +16,7 @@ describe('Defender class', () => {
     expect(defender.health).toBe(100);
     expect(defender.projectiles).toEqual([]);
     expect(defender.timer).toBe(0);
-    expect(defender.image.src).toBe("Images/baguetteBazooka.png");
+    expect(defender.image.src).toBe("../../images/entityImages/baguetteBazooka100.png");
   });
 
   test('draw method draws the defender', () => {

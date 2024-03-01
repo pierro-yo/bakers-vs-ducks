@@ -17,7 +17,7 @@ describe('Enemy class', () => {
     expect(enemy.movement).toBe(enemy.speed);
     expect(enemy.health).toBe(50);
     expect(enemy.maxHealth).toBe(50);
-    expect(enemy.image.src).toBe("images/duckWithCone.png");
+    expect(enemy.image.src).toBe("../../images/entityImages/duckWithCone.png");
   });
 
   test('update method updates the enemy position', () => {

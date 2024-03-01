@@ -16,7 +16,7 @@ class Enemy {
         this.maxHealth = this.health;
 
         this.image = new Image()
-        this.image.src = "images/entityImages/duckWithCone.png"
+        this.image.src = "../../images/entityImages/secretEnemy.jpeg"
     }
 
     // update function decreases the x axis to simulate the enemy moving closer to the bakery
@@ -32,5 +32,27 @@ class Enemy {
         ctx.fillStyle = 'black';
         ctx.font = '30px Orbitron';
         ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+    }
+}
+
+function handleEnemies(){
+    for (let i = 0; i < enemies.length; i++){
+        enemies[i].update();
+        enemies[i].draw();
+        if (enemies[i].x < 0){
+            gameOver = true;
+        }
+        if (enemies[i].health <= 0){
+            const findThisIndex = enemyPositions.indexOf(enemies[i].y);
+            enemyPositions.splice(findThisIndex, 1);
+            enemies.splice(i, 1);
+            i--;
+          }
+    }
+    if (frame % enemiesInterval === 0){
+        let verticalPosition = Math.floor(Math.random() * 4 + 1) * cellSize + cellGap;
+        enemies.push(new Enemy(verticalPosition));
+        enemyPositions.push(verticalPosition);
+        if (enemiesInterval > 120) enemiesInterval -= 50;
     }
 }
