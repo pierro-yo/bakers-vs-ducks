@@ -105,11 +105,12 @@ function handleGameGrid() {
         ctx.fillStyle = "gray"
         ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
     
-    
+
         ctx.clearRect(0, 500, canvas.width, canvas.height)
         ctx.fillStyle = "pink"
         ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
         handleGameGrid()
+
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
