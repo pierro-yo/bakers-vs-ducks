@@ -122,7 +122,7 @@ canvas.addEventListener('click', function(){
         defenders.push(new Defender(gridPositionX, gridPositionY));
         numberOfResources -= defenderCost;
     } else {
-        floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'gold'));
+        floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
     }
 });
 
