@@ -8,14 +8,18 @@ canvas.height = 600;
 const cellSize = 100;   
 const cellGap = 3;
 let sometext = "hello there";
+let numberOfResources = 300;
 let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
+let score = 0;
 
+const floatingMessages = [];
 const defenders = [];
 const enemies = [];
 const enemyPositions = [];
 const projectiles = [];
+const resources = []
 
 
 // holds data about each individual cell
@@ -113,7 +117,13 @@ canvas.addEventListener('click', function(){
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
     }
-    defenders.push(new Defender(gridPositionX, gridPositionY));
+    let defenderCost = 50;
+    if (numberOfResources >= defenderCost) {
+        defenders.push(new Defender(gridPositionX, gridPositionY));
+        numberOfResources -= defenderCost;
+    } else {
+        floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
+    }
 });
 
 
@@ -127,6 +137,7 @@ function animate() {
     handleDefenders();
     handleProjectiles();
     handleEnemies();
+    handleFloatingMessages();
     frame++;
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
@@ -136,7 +147,7 @@ function animate() {
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
-    ctx.fillText(`${sometext}`, 20, 50)
+    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 20, 50)
 // -----------------------------------------
 
     requestAnimationFrame(animate)
