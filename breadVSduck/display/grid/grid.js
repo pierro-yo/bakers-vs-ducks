@@ -13,6 +13,8 @@ let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
 let score = 0;
+let defender1 = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
+let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
 
 const floatingMessages = [];
 const defenders = [];
@@ -30,8 +32,16 @@ const mouse = {
     x: 10,
     y: 10,
     width: 0.1,
-    height: 0.1
+    height: 0.1,
+    clicked: false
 }
+
+canvas.addEventListener('mousedown', function(){
+    mouse.clicked = true;
+});
+canvas.addEventListener('mouseup', function(){
+    mouse.clicked = false;
+});
 
 let canvasPosition = canvas.getBoundingClientRect();
 // returns a dom object relative to the position and size on the canvas
@@ -106,6 +116,7 @@ function handleGameGrid(){
 //     // for (let i = 0; i < gameGrid.length; i++) {
 //     //    gameGrid[i].draw()
 //     }
+
 // The commented-out code above is an alternative way to achieve the same result using a traditional for loop.
     // It loops through each element in gameGrid (which represents a row) and calls the draw method for each cell.
     // However, using forEach is a concise and more modern approach.
@@ -119,13 +130,17 @@ canvas.addEventListener('click', function(){
     }
     let defenderCost = 50;
     if (numberOfResources >= defenderCost) {
-        defenders.push(new Defender(gridPositionX, gridPositionY));
-        numberOfResources -= defenderCost;
+        if (chosenDefender === 1){
+            defenders.push(new Defender(defender1, gridPositionX, gridPositionY));
+            numberOfResources -= defenderCost;
+        } else {
+            defenders.push(new Defender(defender2, gridPositionX, gridPositionY));
+            numberOfResources -= defenderCost;
+        }
     } else {
         floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
     }
 });
-
 
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
@@ -137,8 +152,10 @@ function animate() {
     handleDefenders();
     handleProjectiles();
     handleEnemies();
+    chooseDefender()
     handleFloatingMessages();
-    frame++;
+    frame++;   
+
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
     ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
@@ -147,7 +164,7 @@ function animate() {
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
-    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 20, 50)
+    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 190, 50)
 // -----------------------------------------
 
     requestAnimationFrame(animate)
