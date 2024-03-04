@@ -17,6 +17,7 @@ class Defender {
         this.chosenDefender = chosenDefender;
         this.projectileImage = dict.projectileImage
         this.projectilePower = dict.projectilePower
+        this.projectileReturn = dict.projectileReturn
         
 
         this.image = new Image()
@@ -43,7 +44,7 @@ class Defender {
         if (this.shooting) {
             this.timer++;
             if (this.timer % this.firerate === 0) {
-                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower}, this.x + 70, this.y + 50));
+                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower, return: this.projectileReturn}, this.x + 70, this.y + 50));
             }
         } else {
             this.timer = 0;
@@ -69,7 +70,7 @@ let chosenDefender = 2;
 function chooseDefender(){
     let card1stroke = 'black';
     let card2stroke = 'black';
-    console.log("here",chosenDefender)
+    // console.log("here",chosenDefender)
     if (collision(mouse, card1) && mouse.clicked){
         chosenDefender = 1;
     } else if (collision(mouse, card2) && mouse.clicked){

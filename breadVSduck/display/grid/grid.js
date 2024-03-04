@@ -13,8 +13,8 @@ let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
 let score = 0;
-let defender1 = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
-let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
+let defender1 = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35, projectileReturn: false}
+let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10, projectileReturn: true}
 
 const floatingMessages = [];
 const defenders = [];

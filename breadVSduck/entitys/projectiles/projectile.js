@@ -12,11 +12,26 @@ class Projectile {
 
         this.image = new Image()
         this.image.src = dict.image
+        this.return = dict.return
+        this.direction = "forward"
     }
     // this simulates the projectile moving by speed amount of pixels every time
-    update(){
-        this.x += this.speed;
+    // update(){
+    //     this.x += this.speed;
+    // }
+
+    // reduce(){
+    //     this.x -= this.speed;
+    // }
+
+    projectileMovement() {
+        if(this.direction === "forward") {
+            this.x += this.speed;
+        } else if (this.direction === "back") {
+            this.x -= this.speed
+        }
     }
+
     // this draws the projectile image
     draw(){
         ctx.drawImage(this.image, this.x, this.y-20, this.width, this.height)
@@ -27,17 +42,26 @@ class Projectile {
 
 function handleProjectiles(){
     for (let i = 0; i < projectiles.length; i++){
-        projectiles[i].update();
+        projectiles[i].projectileMovement("forward");
         projectiles[i].draw();
 
         for (let j = 0; j < enemies.length; j++){
             if (enemies[j] && projectiles[i] && collision(projectiles[i], enemies[j])){
                 enemies[j].health -= projectiles[i].power;
-                projectiles.splice(i, 1);
-                i--;
+                if (projectiles[i].return === true) {
+                    // projectiles.splice(i, 1);
+                    // i--;
+                    console.log("should return")
+                    projectiles[i].direction = "back";
+                    projectiles[i].draw();
+                } else {
+                    projectiles.splice(i, 1);
+                    i--;
+                }
+                
             }
         }
-
+        
         if (projectiles[i] && projectiles[i].x > canvas.width - cellSize){
             projectiles.splice(i, 1);
             i--;
