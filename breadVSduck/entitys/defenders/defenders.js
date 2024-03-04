@@ -14,16 +14,22 @@ class Defender {
         this.firerate = dict.firerate;
         this.projectiles = [];
         this.timer = 0;
+        this.chosenDefender = 1;
 
         this.image = new Image()
         this.image.src = dict.image
         console.log(dict)
     }
     draw() {
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         ctx.fillStyle = 'gold';
         ctx.font = '30px Orbitron';
-        ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+        if (this.chosenDefender === 1){
+            ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+            ctx.drawImage("../../images/entityImages/baguetteBazooka100.png", this.x, this.y, this.width, this.height)
+        } else if (this.chosenDefender === 2){
+            ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+            ctx.drawImage("../../images/entityImages/duckWithCone.png", this.x, this.y, this.width, this.height)
+        }
     }
     // the update function for the defence is slightly different
     // here we are checking on update, if shooting is true
@@ -39,6 +45,51 @@ class Defender {
             this.timer = 0;
         }
     }
+}
+
+const card1 = {
+    x: 10,
+    y: 10,
+    width: 70,
+    height: 85
+}
+
+const card2 = {
+    x: 90,
+    y: 10,
+    width: 70,
+    height: 85
+}
+
+function chooseDefender(){
+    let card1stroke = 'black';
+    let card2stroke = 'black';
+    if (collision(mouse, card1) && mouse.clicked){
+        this.chosenDefender = 1;
+    } else if (collision(mouse, card2) && mouse.clicked){
+        this.chosenDefender = 2;
+    }
+
+    if (this.chosenDefender === 1){
+        card1stroke = 'red';
+        card2stroke = 'black';
+    }else if (this.chosenDefender === 2){
+        card1stroke = 'black';
+        card2stroke = 'red';
+    }else {
+        card1stroke = 'black';
+        card2stroke = 'black';
+    }
+
+    ctx.linewidth = 1;
+    ctx.fillRect(card1.x, card1.y, card1.height, card1.width);
+    //ctx.drawImage("../../images/entityImages/baguetteBazooka100.png", this.x, this.y, this.width, this.height);
+    ctx.strokestyle = card1stroke;
+    ctx.strokeRect(card1.x, card1.y, card1.height, card1.width);
+    ctx.fillRect(card2.x, card2.y, card2.height, card2.width);
+    //ctx.drawImage("../../images/entityImages/duckWithCone.png", this.x, this.y, this.width, this.height);
+    ctx.strokestyle = card2stroke;
+    ctx.strokeRect(card2.x, card2.y, card2.height, card2.width);
 }
 
 function handleDefenders(){

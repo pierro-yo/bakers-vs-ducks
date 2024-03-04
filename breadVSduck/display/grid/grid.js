@@ -21,8 +21,16 @@ const mouse = {
     x: 10,
     y: 10,
     width: 0.1,
-    height: 0.1
+    height: 0.1,
+    clicked: false
 }
+
+canvas.addEventListener('mousedown', function(){
+    mouse.clicked = true;
+});
+canvas.addEventListener('mouseup', function(){
+    mouse.clicked = false;
+});
 
 let canvasPosition = canvas.getBoundingClientRect();
 // returns a dom object relative to the position and size on the canvas
@@ -138,6 +146,7 @@ function animate() {
 
     handleDefenders()
     handleGameGrid()
+    chooseDefender()
 
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
