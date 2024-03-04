@@ -15,6 +15,7 @@ class Defender {
         this.projectiles = [];
         this.timer = 0;
         this.chosenDefender = chosenDefender;
+        this.projectileImage = dict.projectileImage
 
         this.image = new Image()
         this.image.src = dict.image
@@ -40,7 +41,7 @@ class Defender {
         if (this.shooting) {
             this.timer++;
             if (this.timer % this.firerate === 0) {
-                projectiles.push(new Projectile(this.x + 70, this.y + 50));
+                projectiles.push(new Projectile(this.projectileImage, this.x + 70, this.y + 50));
             }
         } else {
             this.timer = 0;
@@ -56,7 +57,7 @@ const card1 = {
 }
 
 const card2 = {
-    x: 90,
+    x: 100,
     y: 10,
     width: 70,
     height: 85
@@ -74,26 +75,23 @@ function chooseDefender(){
     }
 
     if (chosenDefender === 1){
-        //console.log("line 74, defender 1")
         card1stroke = 'red';
         card2stroke = 'black';
     }else if (chosenDefender === 2){
-        console.log("line 78, defender 2")
         card1stroke = 'black';
         card2stroke = 'red';
     }else {
-        //console.log("line 82, defender 0")
         card1stroke = 'black';
         card2stroke = 'black';
     }
 
     ctx.linewidth = 1;
     ctx.fillRect(card1.x, card1.y, card1.height, card1.width);
-    //ctx.drawImage("../../images/entityImages/baguetteBazooka100.png", this.x, this.y, this.width, this.height);
+    ctx.drawImage("../../images/entityImages/baguetteBazooka100.png", card1.x, card1.y, card1.width, card1.height)
     ctx.strokestyle = card1stroke;
     ctx.strokeRect(card1.x, card1.y, card1.height, card1.width);
     ctx.fillRect(card2.x, card2.y, card2.height, card2.width);
-    //ctx.drawImage("../../images/entityImages/duckWithCone.png", this.x, this.y, this.width, this.height);
+    //ctx.drawImage("../../images/entityImages/duckWithCone.png", card2.x, card2.y, card2.width, card2.height);
     ctx.strokestyle = card2stroke;
     ctx.strokeRect(card2.x, card2.y, card2.height, card2.width);
 }
