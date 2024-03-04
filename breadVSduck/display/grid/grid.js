@@ -78,7 +78,7 @@ const controlsBarBottom = {
 // and the inner loop starts again for the new row, filling in the positions horizontally.
 
 function createGrid(){
-    for (let y = cellSize; y < canvas.height; y += cellSize){
+    for (let y = cellSize; y < canvas.height - 100; y += cellSize){
         for (let x = 0; x < canvas.width; x += cellSize){
             gameGrid.push(new Cell(x, y));
         }
@@ -125,6 +125,7 @@ canvas.addEventListener('click', function(){
     const gridPositionX = mouse.x  - (mouse.x % cellSize) + cellGap;
     const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
     if (gridPositionY < cellSize) return;
+    if (gridPositionY > 500) return;
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
     }
