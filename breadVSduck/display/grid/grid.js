@@ -178,8 +178,15 @@ function animate() {
     ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 190, 50)
 // -----------------------------------------
 
-    requestAnimationFrame(animate)
+// this displays the lose screen
+    if (!gameOver) requestAnimationFrame(animate)
+    if (gameOver){
+        ctx.fillStyle = 'black';
+        ctx.font = '90px Ariel';
+        ctx.fillText('GAME OVER', 140, 330);
+    }
 }
+
 
 animate();
 
@@ -190,3 +197,8 @@ function collision(first, second) {
         return true
     }
 }
+
+// recalibrates mouse pointer when resizing window
+window.addEventListener('resize', function(){
+    canvasPosition = canvas.getBoundingClientRect();
+})
