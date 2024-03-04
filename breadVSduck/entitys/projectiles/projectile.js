@@ -3,6 +3,8 @@ class Projectile {
     // the constructor will eventually take more than just the x and y, like the power and image source
     // width and height correlate to the actual image size, they are a bit odd but it works for now
     constructor(dict, x, y){
+        this.bakerXPosition = dict.bakerXPosition;
+        this.bakerYPosition = dict.bakerYPosition;
         this.x = x;
         this.y = y;
         this.width = 100;
@@ -42,6 +44,8 @@ class Projectile {
 
 function handleProjectiles(){
     for (let i = 0; i < projectiles.length; i++){
+        originalPositionX = projectiles[i].x
+        originalPositionY = projectiles[i].y
         projectiles[i].projectileMovement("forward");
         projectiles[i].draw();
 
@@ -49,17 +53,14 @@ function handleProjectiles(){
             if (enemies[j] && projectiles[i] && collision(projectiles[i], enemies[j])){
                 enemies[j].health -= projectiles[i].power;
                 if (projectiles[i].return === true) {
-                    // projectiles.splice(i, 1);
-                    // i--;
-                    console.log("should return")
                     projectiles[i].direction = "back";
                     projectiles[i].draw();
-                } else {
-                    projectiles.splice(i, 1);
-                    i--;
-                }
-                
+                } 
             }
+            if (projectiles[i] && projectiles[i].x < projectiles[i].bakerXPosition) { 
+                projectiles.splice(i, 1);
+                i--;
+            } 
         }
         
         if (projectiles[i] && projectiles[i].x > canvas.width - cellSize){
