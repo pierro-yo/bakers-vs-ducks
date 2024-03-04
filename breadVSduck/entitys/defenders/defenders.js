@@ -14,22 +14,23 @@ class Defender {
         this.firerate = dict.firerate;
         this.projectiles = [];
         this.timer = 0;
-        this.chosenDefender = 1;
+        this.chosenDefender = chosenDefender;
 
         this.image = new Image()
         this.image.src = dict.image
         console.log(dict)
+        console.log("class", this.chosenDefender)
     }
     draw() {
         ctx.fillStyle = 'gold';
         ctx.font = '30px Orbitron';
         if (this.chosenDefender === 1){
-            ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
-            ctx.drawImage("../../images/entityImages/baguetteBazooka100.png", this.x, this.y, this.width, this.height)
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         } else if (this.chosenDefender === 2){
-            ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
-            ctx.drawImage("../../images/entityImages/duckWithCone.png", this.x, this.y, this.width, this.height)
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         }
+        ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+
     }
     // the update function for the defence is slightly different
     // here we are checking on update, if shooting is true
@@ -60,23 +61,28 @@ const card2 = {
     width: 70,
     height: 85
 }
+let chosenDefender = 2;
 
 function chooseDefender(){
     let card1stroke = 'black';
     let card2stroke = 'black';
-    if (collision(mouse, card1) && mouse.clicked){
-        this.chosenDefender = 1;
-    } else if (collision(mouse, card2) && mouse.clicked){
-        this.chosenDefender = 2;
+    console.log("here",chosenDefender)
+    if (collision(mouse, card1)){
+        chosenDefender = 1;
+    } else if (collision(mouse, card2)){
+        chosenDefender = 2;
     }
 
-    if (this.chosenDefender === 1){
+    if (chosenDefender === 1){
+        //console.log("line 74, defender 1")
         card1stroke = 'red';
         card2stroke = 'black';
-    }else if (this.chosenDefender === 2){
+    }else if (chosenDefender === 2){
+        console.log("line 78, defender 2")
         card1stroke = 'black';
         card2stroke = 'red';
     }else {
+        //console.log("line 82, defender 0")
         card1stroke = 'black';
         card2stroke = 'black';
     }

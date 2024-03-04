@@ -13,6 +13,8 @@ let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
 let score = 0;
+let defender1 = {health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png"}
+let defender2 = {health: 200, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png"}
 
 const floatingMessages = [];
 const defenders = [];
@@ -128,8 +130,13 @@ canvas.addEventListener('click', function(){
     }
     let defenderCost = 50;
     if (numberOfResources >= defenderCost) {
-        defenders.push(new Defender({health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png"}, gridPositionX, gridPositionY));
-        numberOfResources -= defenderCost;
+        if (chosenDefender === 1){
+            defenders.push(new Defender(defender1, gridPositionX, gridPositionY));
+            numberOfResources -= defenderCost;
+        } else {
+            defenders.push(new Defender(defender2, gridPositionX, gridPositionY));
+            numberOfResources -= defenderCost;
+        }
     } else {
         floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
     }
