@@ -16,7 +16,7 @@ class Enemy {
         this.maxHealth = this.health;
 
         this.image = new Image()
-        this.image.src = "breadVSduck/images/entityImages/duckWithCone.png"
+        this.image.src = "../../images/entityImages/secretEnemy.jpeg"
     }
 
     // update function decreases the x axis to simulate the enemy moving closer to the bakery
@@ -43,6 +43,15 @@ function handleEnemies(){
             gameOver = true;
         }
         if (enemies[i].health <= 0){
+
+            let gainedResources = enemies[i].maxHealth/10;
+
+            floatingMessages.push(new floatingMessage('+' + gainedResources, enemies[i].x, enemies[i].y, 30, 'black'));
+            floatingMessages.push(new floatingMessage('+' + gainedResources, 250, 50, 30, 'gold'));
+
+            numberOfResources += gainedResources;
+            score += gainedResources;
+
             const findThisIndex = enemyPositions.indexOf(enemies[i].y);
             enemyPositions.splice(findThisIndex, 1);
             enemies.splice(i, 1);
@@ -50,7 +59,7 @@ function handleEnemies(){
           }
     }
     if (frame % enemiesInterval === 0){
-        let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
+        let verticalPosition = Math.floor(Math.random() * 4 + 1) * cellSize + cellGap;
         enemies.push(new Enemy(verticalPosition));
         enemyPositions.push(verticalPosition);
         if (enemiesInterval > 120) enemiesInterval -= 50;

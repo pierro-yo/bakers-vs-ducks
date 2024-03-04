@@ -1,17 +1,26 @@
-const canvas = document.getElementById('canvas1')
-const ctx = canvas.getContext('2d')
-canvas.width = 900
-canvas.height = 600
+const canvas = document.getElementById('canvas1');
+const ctx = canvas.getContext('2d');
+canvas.width = 900;
+canvas.height = 600;
 
 // global variables
-let sometext = "hello there"
+// Each cell row will be 100px wide and 100px tall
+const cellSize = 100;   
+const cellGap = 3;
+let sometext = "hello there";
+let numberOfResources = 300;
+let enemiesInterval = 600;
+let frame = 0;
+let gameOver = false;
+let score = 0;
+
+const floatingMessages = [];
 const defenders = [];
 const enemies = [];
 const enemyPositions = [];
 const projectiles = [];
-// Each cell row will be 100px wide and 100px tall
-const cellSize = 100   
-const cellGap = 3
+const resources = []
+
 
 // holds data about each individual cell
 const gameGrid = []
@@ -46,10 +55,10 @@ canvas.addEventListener('mouseleave', function(){
     mouse.y = undefined
 })
 
-function handleMouse(e) {
-    mouse.x = undefined
-    mouse.y = undefined
-}
+// function handleMouse(e) {
+//     mouse.x = undefined
+//     mouse.y = undefined
+// }
 
 // game board
 const controlsBarTop = {
@@ -61,39 +70,50 @@ const controlsBarBottom = {
     height: cellSize,
 }
 
-// creates one new cell by taking two arguments of horizontal and vertical values
-class Cell {
-    constructor(x, y) {
-        this.x = x
-        this.y = y
-        this.width = cellSize
-        this.height = cellSize
-    }
-// takes the arguments of horizontal and vertical values creates a rectangle of that size at the given coordinates
-    draw() {
-        if (mouse.x && mouse.y && collision(this, mouse)) {
-            ctx.strokeStyle = "white"
-            ctx.strokeRect(this.x, this.y, this.width, this.height)
-        }
-    }  
-}
+
 // this for loop repesenents rows. It starts at cellsize to give space for the top menu bar
 // it then reaches the end of the row, the outer loop increments 'y' to move down to the next row,
 // and the inner loop starts again for the new row, filling in the positions horizontally.
-function createGrid() {
-    for (let y = cellSize; y < canvas.height - cellSize; y += cellSize) {
-        gameRow = []
-        for (let x = 0; x < canvas.width; x += cellSize) {
-            gameRow.push(new Cell(x, y));
+
+function createGrid(){
+    for (let y = cellSize; y < canvas.height; y += cellSize){
+        for (let x = 0; x < canvas.width; x += cellSize){
+            gameGrid.push(new Cell(x, y));
         }
-        gameGrid.push(gameRow)
-        // console.log(gameGrid[1][2])
     }
-// The commented out code is an example of how the game grid can access different cells, the first index refers to the row, the second
-// refers to the column
+}
+createGrid();
+function handleGameGrid(){
+    for (let i = 0; i < gameGrid.length; i++){
+        gameGrid[i].draw();
+    }
 }
 
-createGrid();
+// function createGrid() {
+//     for (let y = cellSize; y < canvas.height - cellSize; y += cellSize) {
+//         gameRow = []
+//         for (let x = 0; x < canvas.width; x += cellSize) {
+//             gameRow.push(new Cell(x, y));
+//         }
+//         gameGrid.push(gameRow)
+//         // console.log(gameGrid[1][2])
+//     }
+// // The commented out code is an example of how the game grid can access different cells, the first index refers to the row, the second
+// // refers to the column
+// }
+
+// createGrid();
+
+// // This function iterates over each row (gameRow) in the gameGrid.
+// function handleGameGrid() {
+//     gameGrid.forEach(function(gameRow) {
+//         gameRow.forEach(function(cell) {
+//             cell.draw()
+//         })
+//     })
+//     // for (let i = 0; i < gameGrid.length; i++) {
+//     //    gameGrid[i].draw()
+//     }
 
 function handleSelectors() {
     gameGrid.forEach(function(gameRow) {
@@ -102,16 +122,6 @@ function handleSelectors() {
         })
     })}
 
-// This function iterates over each row (gameRow) in the gameGrid.
-function handleGameGrid() {
-    gameGrid.forEach(function(gameRow) {
-        gameRow.forEach(function(cell) {
-            cell.draw()
-        })
-    })
-    // for (let i = 0; i < gameGrid.length; i++) {
-    //    gameGrid[i].draw()
-    }
 // The commented-out code above is an alternative way to achieve the same result using a traditional for loop.
     // It loops through each element in gameGrid (which represents a row) and calls the draw method for each cell.
     // However, using forEach is a concise and more modern approach.
@@ -123,19 +133,14 @@ canvas.addEventListener('click', function(){
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
     }
-    defenders.push(new Defender({health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png"}, gridPositionX, gridPositionY));
-});
-
-canvas.addEventListener('click', function(){
-    const gridPositionX = mouse.x  - (mouse.x % cellSize) + cellGap;
-    const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
-    if (gridPositionY < cellSize) return;
-    for (let i = 0; i < defenders.length; i++){
-        if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
+    let defenderCost = 50;
+    if (numberOfResources >= defenderCost) {
+        defenders.push(new Defender({health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png"}, gridPositionX, gridPositionY));
+        numberOfResources -= defenderCost;
+    } else {
+        floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
     }
-    defenders.push(new Defender({health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png"}, gridPositionX, gridPositionY));
 });
-
 
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
@@ -144,9 +149,13 @@ function animate() {
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
 
-    handleDefenders()
-    handleGameGrid()
+    handleGameGrid();
+    handleDefenders();
+    handleProjectiles();
+    handleEnemies();
     chooseDefender()
+    handleFloatingMessages();
+    frame++;   
 
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "pink"
@@ -156,7 +165,7 @@ function animate() {
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
-    ctx.fillText(`${sometext}`, 20, 50)
+    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 20, 50)
 // -----------------------------------------
 
     requestAnimationFrame(animate)

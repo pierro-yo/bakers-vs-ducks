@@ -1,9 +1,14 @@
 body {
-    background: black
+    background-image: url(/breadVSduck/images/grid/image\ \(8\).png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-size: 900px 500px;
+    background-position-y: 6.1rem;
+    background-position-x: 6.01rem;
+    background-color: black;
 }
 
 #canvas1 {
-    border: 1px solid white;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -11,7 +16,7 @@ body {
     width: 900px;
     height: 600px;
     background: rgb(86, 184, 44);
-    background-image: url(/breadVSduck/images/roadbakerypond.png);
+    background-image: url(/breadVSduck/images/grid/canvasBg.png);
     background-repeat: no-repeat;
     background-size: 900px 500px;
 }
