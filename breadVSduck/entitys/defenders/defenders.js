@@ -16,6 +16,8 @@ class Defender {
         this.timer = 0;
         this.chosenDefender = chosenDefender;
         this.projectileImage = dict.projectileImage
+        this.projectilePower = dict.projectilePower
+        
 
         this.image = new Image()
         this.image.src = dict.image
@@ -41,7 +43,7 @@ class Defender {
         if (this.shooting) {
             this.timer++;
             if (this.timer % this.firerate === 0) {
-                projectiles.push(new Projectile(this.projectileImage, this.x + 70, this.y + 50));
+                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower}, this.x + 70, this.y + 50));
             }
         } else {
             this.timer = 0;
@@ -68,9 +70,9 @@ function chooseDefender(){
     let card1stroke = 'black';
     let card2stroke = 'black';
     console.log("here",chosenDefender)
-    if (collision(mouse, card1)){
+    if (collision(mouse, card1) && mouse.clicked){
         chosenDefender = 1;
-    } else if (collision(mouse, card2)){
+    } else if (collision(mouse, card2) && mouse.clicked){
         chosenDefender = 2;
     }
 
@@ -85,14 +87,19 @@ function chooseDefender(){
         card2stroke = 'black';
     }
 
+    image1 = new Image()
+    image1.src = "../../images/entityImages/baguetteBazooka100.png"
+    image2 = new Image()
+    image2.src = "../../images/entityImages/croissantBoomerang100.png"
     ctx.linewidth = 1;
+    ctx.fillStyle = 'rgba(0,0,0,0.5)'
     ctx.fillRect(card1.x, card1.y, card1.height, card1.width);
-    ctx.drawImage("../../images/entityImages/baguetteBazooka100.png", card1.x, card1.y, card1.width, card1.height)
-    ctx.strokestyle = card1stroke;
+    ctx.drawImage(image1, card1.x+5, card1.y, card1.width, card1.height-15)
+    ctx.strokeStyle = card1stroke;
     ctx.strokeRect(card1.x, card1.y, card1.height, card1.width);
     ctx.fillRect(card2.x, card2.y, card2.height, card2.width);
-    //ctx.drawImage("../../images/entityImages/duckWithCone.png", card2.x, card2.y, card2.width, card2.height);
-    ctx.strokestyle = card2stroke;
+    ctx.drawImage(image2, card2.x+5, card2.y, card2.width, card2.height-15);
+    ctx.strokeStyle = card2stroke;
     ctx.strokeRect(card2.x, card2.y, card2.height, card2.width);
 }
 

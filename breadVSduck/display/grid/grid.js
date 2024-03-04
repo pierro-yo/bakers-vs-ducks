@@ -13,8 +13,8 @@ let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
 let score = 0;
-let defender1 = {health: 100, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png"}
-let defender2 = {health: 200, firerate: 100, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png"}
+let defender1 = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
+let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
 
 const floatingMessages = [];
 const defenders = [];
@@ -164,7 +164,7 @@ function animate() {
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
-    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 180, 50)
+    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 190, 50)
 // -----------------------------------------
 
     requestAnimationFrame(animate)

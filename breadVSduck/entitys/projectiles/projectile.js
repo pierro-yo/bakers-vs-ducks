@@ -2,16 +2,16 @@ class Projectile {
     // x and y coords relate to the placement on screen
     // the constructor will eventually take more than just the x and y, like the power and image source
     // width and height correlate to the actual image size, they are a bit odd but it works for now
-    constructor(image, x, y){
+    constructor(dict, x, y){
         this.x = x;
         this.y = y;
         this.width = 100;
         this.height = 40;
-        this.power = 20;
+        this.power = dict.power;
         this.speed = 5;
 
         this.image = new Image()
-        this.image.src = image
+        this.image.src = dict.image
     }
     // this simulates the projectile moving by speed amount of pixels every time
     update(){
