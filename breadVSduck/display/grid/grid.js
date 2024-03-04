@@ -115,13 +115,6 @@ function handleGameGrid(){
 //     //    gameGrid[i].draw()
 //     }
 
-function handleSelectors() {
-    gameGrid.forEach(function(gameRow) {
-        gameRow.forEach(function(cell) {
-            cell.draw()
-        })
-    })}
-
 // The commented-out code above is an alternative way to achieve the same result using a traditional for loop.
     // It loops through each element in gameGrid (which represents a row) and calls the draw method for each cell.
     // However, using forEach is a concise and more modern approach.
@@ -144,7 +137,6 @@ canvas.addEventListener('click', function(){
 
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
-    handleSelectors()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "gray"
     ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
@@ -165,7 +157,7 @@ function animate() {
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
-    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 20, 50)
+    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 180, 50)
 // -----------------------------------------
 
     requestAnimationFrame(animate)

@@ -16,7 +16,7 @@ body {
     width: 900px;
     height: 600px;
     background: rgb(86, 184, 44);
-    background-image: url(/breadVSduck/images/grid/canvasBg.png);
+    background-image: url(../../images/grid/canvasBg.png);
     background-repeat: no-repeat;
     background-size: 900px 500px;
 }
