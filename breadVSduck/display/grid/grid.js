@@ -191,6 +191,6 @@ function collision(first, second) {
 }
 
 // recalibrates mouse pointer when resizing window
-window.addEventListener('resize', function(){
+window.addEventListener("resize", function(){
     canvasPosition = canvas.getBoundingClientRect();
 })
