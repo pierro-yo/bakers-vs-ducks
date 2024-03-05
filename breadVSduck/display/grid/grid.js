@@ -174,20 +174,21 @@ function animate() {
     
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
-    ctx.font = "20px Arial"
-    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 190, 50)
+    ctx.font = "25px Arial"
+    ctx.fillText(`Score: ${score}`, 190, 40)
+    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 190, 80)
 // -----------------------------------------
 
 // this displays the lose screen
     if (!gameOver && !gamePause) requestAnimationFrame(animate)
     if (gameOver){
         ctx.fillStyle = 'black';
-        ctx.font = '90px Ariel';
-        ctx.fillText('GAME OVER', 140, 330);
+        ctx.font = '90px Arial';
+        ctx.fillText('GAME OVER', 180, 330);
     }
     if (gamePause){
         ctx.fillStyle = 'black';
-        ctx.font = '90px Ariel';
+        ctx.font = '90px Arial';
         ctx.fillText('PAUSED', 275, 330);
     }
     
