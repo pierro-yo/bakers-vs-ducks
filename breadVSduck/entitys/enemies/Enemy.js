@@ -15,6 +15,9 @@ class Enemy {
         this.health = dict.health;
         this.maxHealth = this.health;
         this.gainedResources = dict.gainedResources
+        this.attackRate = dict.attackRate;
+        this.attackDamage = dict.attackDamage;
+        this.timer = 0
 
         this.image = new Image()
         this.image.src = dict.image
@@ -36,11 +39,11 @@ class Enemy {
     }
 }
 
-let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWithCone.png", gainedResources: 6}
-let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png", gainedResources: 7}
-let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png", gainedResources: 8}
-let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png", gainedResources: 5}
-let poleDuck = {speed: 0.6, health: 55, image: "../../images/entityImages/polevaultDuck.png", gainedResources: 5}
+let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWithCone.png", gainedResources: 6, attackRate: 25, attackDamage: 5}
+let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png", gainedResources: 7, attackRate: 25, attackDamage: 5}
+let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png", gainedResources: 8, attackRate: 50, attackDamage: 10}
+let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png", gainedResources: 5, attackRate: 50, attackDamage: 5}
+let poleDuck = {speed: 0.6, health: 55, image: "../../images/entityImages/polevaultDuck.png", gainedResources: 5, attackRate: 50, attackDamage: 5}
 
 let enemyOptions = [coneDuck, bucketDuck, bubbleDuck, mallardDuck, poleDuck]
 
