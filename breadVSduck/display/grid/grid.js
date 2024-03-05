@@ -13,6 +13,7 @@ let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
 let score = 0;
+let defenderCost = 50;
 let baguette = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
 let croissant = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
 let gatling = {health: 35, firerate: 10, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2}
@@ -133,7 +134,6 @@ canvas.addEventListener('click', function(){
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
     }
-    let defenderCost = 50;
     if (numberOfResources >= defenderCost) {
         if (chosenDefender === 1){
             defenders.push(new Defender(defendersValues[0], gridPositionX, gridPositionY));
@@ -183,7 +183,8 @@ function animate() {
     if (gameOver){
         ctx.fillStyle = 'black';
         ctx.font = '90px Ariel';
-        ctx.fillText('GAME OVER', 140, 330);
+        ctx.fillText('GAME OVER', 140, 275);
+        ctx.fillText(`Final Score: ${score}`, 140, 415);
     }
 }
 
