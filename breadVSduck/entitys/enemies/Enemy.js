@@ -5,18 +5,18 @@ class Enemy {
 
     // do not worry about the canvas (ctx/all of the x,y positions) stuff just yet, this is code that i have taken from
     // something that I have worked on this morning 27-02-24
-    constructor(verticalPosition) {
+    constructor(verticalPosition, dict) {
         this.x = canvas.width;
         this.y = verticalPosition;
         this.width = cellSize - cellGap * 2;
         this.height = cellSize - cellGap * 2;
-        this.speed = Math.random() * 0.2 + 0.4;
+        this.speed = dict.speed;
         this.movement = this.speed;
-        this.health = 100;
+        this.health = dict.health;
         this.maxHealth = this.health;
 
         this.image = new Image()
-        this.image.src = "../../images/entityImages/secretEnemy.jpeg"
+        this.image.src = dict.image
     }
 
     // update function decreases the x axis to simulate the enemy moving closer to the bakery
@@ -34,6 +34,13 @@ class Enemy {
         ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
     }
 }
+
+let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWithCone.png"}
+let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png"}
+let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png"}
+let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png"}
+
+let enemyOptions = [coneDuck, bucketDuck, bubbleDuck, mallardDuck]
 
 function handleEnemies(){
     for (let i = 0; i < enemies.length; i++){
@@ -56,11 +63,12 @@ function handleEnemies(){
             enemyPositions.splice(findThisIndex, 1);
             enemies.splice(i, 1);
             i--;
-          }
+        }
     }
     if (frame % enemiesInterval === 0){
         let verticalPosition = Math.floor(Math.random() * 4 + 1) * cellSize + cellGap;
-        enemies.push(new Enemy(verticalPosition));
+        let index = Math.floor(Math.random() * 4)
+        enemies.push(new Enemy(verticalPosition, enemyOptions[index]));
         enemyPositions.push(verticalPosition);
         if (enemiesInterval > 120) enemiesInterval -= 50;
     }
