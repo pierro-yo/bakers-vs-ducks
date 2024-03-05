@@ -131,19 +131,19 @@ function handleGameGrid(){
 canvas.addEventListener('click', function(){
     if(!gamePause) {
         const gridPositionX = mouse.x  - (mouse.x % cellSize) + cellGap;
-        const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
-        if (gridPositionY < cellSize) return;
-        if (gridPositionY > 500) return;
-        for (let i = 0; i < defenders.length; i++){
-            if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
-            }
-            if (numberOfResources >= defenderCost) {
-            if (chosenDefender === 1){
+            const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
+            if (gridPositionY < cellSize) return;
+            if (gridPositionY > 500) return;
+            for (let i = 0; i < defenders.length; i++){
+                if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
+                    }
+                    if (numberOfResources >= defenderCost) {
+                if (chosenDefender === 1){
                 defenders.push(new Defender(defendersValues[0], gridPositionX, gridPositionY));
             numberOfResources -= defenderCost;
         } else if (chosenDefender === 2){
-            defenders.push(new Defender(defendersValues[1], gridPositionX, gridPositionY));
-            numberOfResources -= defenderCost;
+                defenders.push(new Defender(defendersValues[1], gridPositionX, gridPositionY));
+                numberOfResources -= defenderCost;
         }else if (chosenDefender === 3){
             defenders.push(new Defender(defendersValues[2], gridPositionX, gridPositionY));
                 numberOfResources -= defenderCost;
