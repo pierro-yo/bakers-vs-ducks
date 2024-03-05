@@ -64,7 +64,7 @@ const card2 = {
     width: 70,
     height: 85
 }
-let chosenDefender = 2;
+let chosenDefender = 1;
 
 function chooseDefender(){
     let card1stroke = 'black';

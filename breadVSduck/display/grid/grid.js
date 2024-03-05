@@ -15,7 +15,8 @@ let frame = 0;
 let gameOver = false;
 let gamePause = false
 let score = 0;
-let defender1 = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
+let defenderCost = 50;
+let defender1 = {health: 85, firerate: 250, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
 let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
 
 const floatingMessages = [];
@@ -185,15 +186,16 @@ function animate() {
     if (!gameOver && !gamePause) requestAnimationFrame(animate)
     if (gameOver){
         ctx.fillStyle = 'black';
-        ctx.font = '90px Arial';
-        ctx.fillText('GAME OVER', 180, 330);
+        ctx.font = '90px Ariel';
+        ctx.fillText('GAME OVER', 140, 275);
+        ctx.fillText(`Final Score: ${score}`, 140, 415);
+
     }
     if (gamePause){
         ctx.fillStyle = 'black';
         ctx.font = '90px Arial';
         ctx.fillText('PAUSED', 275, 330);
     }
-    
 }
 
 
