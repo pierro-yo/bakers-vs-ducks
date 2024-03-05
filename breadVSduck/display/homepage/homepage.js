@@ -29,7 +29,7 @@ class HowToPlay {
         this.currentPageIndex = 0;
         // An array showing the text for each page of the How To Play Instructions
         this.displayText = [
-            "Instructions for how to play - page 1, let's learn how to play, lots more text being added here to test paragraph",
+            "Instructions for how to play - page 1, let's learn how to play, lots more text being added here to test paragraph. Adding in even more text to test two lines on a paragraph, but need even more text for this test.",
             "Instructions for how to play - page 2",
             "Instructions for how to play - page 3",
             "Instructions for how to play - page 4",
@@ -61,16 +61,16 @@ class HowToPlay {
         // Hides the back button on the instructions if you are on the first page of instructions
         // Still keeps the space needed for the button (using visibility attribute)
         if (this.currentPageIndex == 0) {
-            backButton.style.visibility = "hidden";
+            backButton.style.display = "none";
         } else {
-            backButton.style.visibility = "visible";
+            backButton.style.display = "block";
         }
         // Hides the next button on the instructions if you are on the last page of the instructions
         // Still keeps the space needed for the button (using visibility attribute)
         if (this.currentPageIndex == this.displayText.length - 1) {
-            nextButton.style.visibility = "hidden";
+            nextButton.style.display = "none";
         } else {
-            nextButton.style.visibility = "visible";
+            nextButton.style.display = "block";
         }
         const displayTextElement = document.getElementById("displayText");
         displayTextElement.textContent =
