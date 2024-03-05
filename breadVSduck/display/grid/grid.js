@@ -146,8 +146,8 @@ canvas.addEventListener('click', function(){
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = "gray"
-    ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
+    // ctx.fillStyle = "gray"
+    // ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
 
     handleGameGrid();
     handleDefenders();
@@ -157,10 +157,12 @@ function animate() {
     handleFloatingMessages();
     frame++;   
 
-    ctx.clearRect(0, 500, canvas.width, canvas.height)
-    ctx.fillStyle = "pink"
-    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
     
+    ctx.clearRect(0, 500, canvas.width, canvas.height)
+    ctx.fillStyle = "rgb(70 70 70 / 56%)"
+    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
+
+
     
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
