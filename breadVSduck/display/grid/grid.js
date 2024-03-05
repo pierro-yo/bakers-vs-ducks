@@ -205,6 +205,12 @@ function animate() {
         ctx.fillText('PAUSED', 275, 275);
         ctx.fillText(`Final Score: ${score}`, 140, 415);
     }
+    if (gamePause){
+        ctx.fillStyle = 'black';
+        ctx.font = '90px Ariel';
+        ctx.fillText('PAUSED', 275, 330);
+    }
+    
     
 }
 
