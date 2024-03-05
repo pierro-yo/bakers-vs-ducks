@@ -54,18 +54,23 @@ function handleProjectiles(){
                 enemies[j].health -= projectiles[i].power;
                 if (projectiles[i].return === true) {
                     projectiles[i].direction = "back";
-                    projectiles[i].draw();
-                } 
+                } else {
+                    projectiles.splice(i, 1);
+                    i--;
+                }
             }
             if (projectiles[i] && projectiles[i].x < projectiles[i].bakerXPosition) { 
-                projectiles.splice(i, 1);
-                i--;
+                if (projectiles[i].return === true) {
+                    projectiles[i].direction = "forward";
+                } 
             } 
         }
         
-        if (projectiles[i] && projectiles[i].x > canvas.width - cellSize){
+        if (projectiles[i] && projectiles[i].x > canvas.width - cellSize && !projectiles[i].return){
             projectiles.splice(i, 1);
             i--;
+        } else if (projectiles[i] && projectiles[i].x > canvas.width - cellSize) {
+            projectiles[i].direction = "back";
         }
     }
 }
