@@ -157,8 +157,8 @@ pauseButton.addEventListener('click', function(){
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = "gray"
-    ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
+    // ctx.fillStyle = "gray"
+    // ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
 
     handleGameGrid();
     handleDefenders();
@@ -168,15 +168,18 @@ function animate() {
     handleFloatingMessages();
     frame++;   
 
-    ctx.clearRect(0, 500, canvas.width, canvas.height)
-    ctx.fillStyle = "pink"
-    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
     
+    ctx.clearRect(0, 500, canvas.width, canvas.height)
+    ctx.fillStyle = "rgb(70 70 70 / 56%)"
+    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
+
+
     
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
-    ctx.font = "20px Arial"
-    ctx.fillText(`Score: ${score}\nBread Crumbs: ${numberOfResources}`, 190, 50)
+    ctx.font = "25px Arial"
+    ctx.fillText(`Score: ${score}`, 190, 40)
+    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 190, 80)
 // -----------------------------------------
 
 // this displays the lose screen
@@ -186,10 +189,11 @@ function animate() {
         ctx.font = '90px Ariel';
         ctx.fillText('GAME OVER', 140, 275);
         ctx.fillText(`Final Score: ${score}`, 140, 415);
+
     }
     if (gamePause){
         ctx.fillStyle = 'black';
-        ctx.font = '90px Ariel';
+        ctx.font = '90px Arial';
         ctx.fillText('PAUSED', 275, 330);
     }
 }
