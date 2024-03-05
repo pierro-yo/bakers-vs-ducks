@@ -26,7 +26,7 @@ class Defender {
     }
     draw() {
         ctx.fillStyle = 'gold';
-        ctx.font = '30px Orbitron';
+        ctx.font = '30px Arial';
         if (this.chosenDefender === 1){
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         } else if (this.chosenDefender === 2){

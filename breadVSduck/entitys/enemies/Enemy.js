@@ -31,8 +31,8 @@ class Enemy {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
 
         ctx.fillStyle = 'black';
-        ctx.font = '30px Orbitron';
-        ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+        ctx.font = '30px Arial';
+        ctx.fillText(Math.floor(this.health), this.x + 5, this.y + 20);
     }
 }
 
