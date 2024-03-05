@@ -5,19 +5,18 @@ class Enemy {
 
     // do not worry about the canvas (ctx/all of the x,y positions) stuff just yet, this is code that i have taken from
     // something that I have worked on this morning 27-02-24
-    constructor(verticalPosition, dict) {
+    constructor(verticalPosition) {
         this.x = canvas.width;
         this.y = verticalPosition;
         this.width = cellSize - cellGap * 2;
         this.height = cellSize - cellGap * 2;
-        this.speed = dict.speed;
+        this.speed = Math.random() * 0.2 + 0.4;
         this.movement = this.speed;
-        this.health = dict.health;
+        this.health = 100;
         this.maxHealth = this.health;
-        this.gainedResources = dict.gainedResources
 
         this.image = new Image()
-        this.image.src = dict.image
+        this.image.src = "../../images/entityImages/secretEnemy.jpeg"
     }
 
     // update function decreases the x axis to simulate the enemy moving closer to the bakery
@@ -36,14 +35,6 @@ class Enemy {
     }
 }
 
-let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWithCone.png", gainedResources: 6}
-let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png", gainedResources: 7}
-let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png", gainedResources: 8}
-let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png", gainedResources: 5}
-let poleDuck = {speed: 0.6, health: 55, image: "../../images/entityImages/polevaultDuck.png", gainedResources: 5}
-
-let enemyOptions = [coneDuck, bucketDuck, bubbleDuck, mallardDuck, poleDuck]
-
 function handleEnemies(){
     for (let i = 0; i < enemies.length; i++){
         enemies[i].update();
@@ -53,7 +44,7 @@ function handleEnemies(){
         }
         if (enemies[i].health <= 0){
 
-            let gainedResources = enemies[i].gainedResources;
+            let gainedResources = enemies[i].maxHealth/10;
 
             floatingMessages.push(new floatingMessage('+' + gainedResources, enemies[i].x, enemies[i].y, 30, 'black'));
             floatingMessages.push(new floatingMessage('+' + gainedResources, 250, 50, 30, 'gold'));
@@ -65,12 +56,11 @@ function handleEnemies(){
             enemyPositions.splice(findThisIndex, 1);
             enemies.splice(i, 1);
             i--;
-        }
+          }
     }
     if (frame % enemiesInterval === 0){
         let verticalPosition = Math.floor(Math.random() * 4 + 1) * cellSize + cellGap;
-        let index = Math.floor(Math.random() * 5)
-        enemies.push(new Enemy(verticalPosition, enemyOptions[index]));
+        enemies.push(new Enemy(verticalPosition));
         enemyPositions.push(verticalPosition);
         if (enemiesInterval > 120) enemiesInterval -= 50;
     }
