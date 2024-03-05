@@ -40,8 +40,9 @@ let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWi
 let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png", gainedResources: 7}
 let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png", gainedResources: 8}
 let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png", gainedResources: 5}
+let poleDuck = {speed: 0.6, health: 55, image: "../../images/entityImages/polevaultDuck.png", gainedResources: 5}
 
-let enemyOptions = [coneDuck, bucketDuck, bubbleDuck, mallardDuck]
+let enemyOptions = [coneDuck, bucketDuck, bubbleDuck, mallardDuck, poleDuck]
 
 function handleEnemies(){
     for (let i = 0; i < enemies.length; i++){
@@ -68,7 +69,7 @@ function handleEnemies(){
     }
     if (frame % enemiesInterval === 0){
         let verticalPosition = Math.floor(Math.random() * 4 + 1) * cellSize + cellGap;
-        let index = Math.floor(Math.random() * 4)
+        let index = Math.floor(Math.random() * 5)
         enemies.push(new Enemy(verticalPosition, enemyOptions[index]));
         enemyPositions.push(verticalPosition);
         if (enemiesInterval > 120) enemiesInterval -= 50;
