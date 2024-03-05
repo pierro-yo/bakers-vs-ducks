@@ -207,7 +207,7 @@ function animate() {
     }
     if (gamePause){
         ctx.fillStyle = 'black';
-        ctx.font = '90px Ariel';
+        ctx.font = '90px Arial';
         ctx.fillText('PAUSED', 275, 330);
     }
     
