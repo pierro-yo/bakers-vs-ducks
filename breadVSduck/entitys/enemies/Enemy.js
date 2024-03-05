@@ -14,6 +14,7 @@ class Enemy {
         this.movement = this.speed;
         this.health = dict.health;
         this.maxHealth = this.health;
+        this.gainedResources = dict.gainedResources
 
         this.image = new Image()
         this.image.src = dict.image
@@ -35,10 +36,10 @@ class Enemy {
     }
 }
 
-let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWithCone.png"}
-let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png"}
-let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png"}
-let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png"}
+let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWithCone.png", gainedResources: 6}
+let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png", gainedResources: 7}
+let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png", gainedResources: 8}
+let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png", gainedResources: 5}
 
 let enemyOptions = [coneDuck, bucketDuck, bubbleDuck, mallardDuck]
 
@@ -51,7 +52,7 @@ function handleEnemies(){
         }
         if (enemies[i].health <= 0){
 
-            let gainedResources = enemies[i].maxHealth/10;
+            let gainedResources = enemies[i].gainedResources;
 
             floatingMessages.push(new floatingMessage('+' + gainedResources, enemies[i].x, enemies[i].y, 30, 'black'));
             floatingMessages.push(new floatingMessage('+' + gainedResources, 250, 50, 30, 'gold'));
