@@ -2,6 +2,7 @@ const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 600;
+const pauseButton = document.getElementById('pauseButton')
 
 // global variables
 // Each cell row will be 100px wide and 100px tall
@@ -12,6 +13,7 @@ let numberOfResources = 300;
 let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
+let gamePause = false
 let score = 0;
 let defenderCost = 50;
 let baguette = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
@@ -127,31 +129,39 @@ function handleGameGrid(){
     // However, using forEach is a concise and more modern approach.
 
 canvas.addEventListener('click', function(){
-    const gridPositionX = mouse.x  - (mouse.x % cellSize) + cellGap;
-    const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
-    if (gridPositionY < cellSize) return;
-    if (gridPositionY > 500) return;
-    for (let i = 0; i < defenders.length; i++){
-        if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
-    }
-    if (numberOfResources >= defenderCost) {
-        if (chosenDefender === 1){
-            defenders.push(new Defender(defendersValues[0], gridPositionX, gridPositionY));
+    if(!gamePause) {
+        const gridPositionX = mouse.x  - (mouse.x % cellSize) + cellGap;
+        const gridPositionY = mouse.y - (mouse.y % cellSize) + cellGap;
+        if (gridPositionY < cellSize) return;
+        if (gridPositionY > 500) return;
+        for (let i = 0; i < defenders.length; i++){
+            if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
+            }
+            if (numberOfResources >= defenderCost) {
+            if (chosenDefender === 1){
+                defenders.push(new Defender(defendersValues[0], gridPositionX, gridPositionY));
             numberOfResources -= defenderCost;
         } else if (chosenDefender === 2){
             defenders.push(new Defender(defendersValues[1], gridPositionX, gridPositionY));
             numberOfResources -= defenderCost;
         }else if (chosenDefender === 3){
             defenders.push(new Defender(defendersValues[2], gridPositionX, gridPositionY));
-            numberOfResources -= defenderCost;
+                numberOfResources -= defenderCost;
         }else if (chosenDefender === 4){
             defenders.push(new Defender(defendersValues[3], gridPositionX, gridPositionY));
             numberOfResources -= defenderCost;
         }
-    } else {
-        floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
-    }
+        } else {
+            floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
+        }
+    } 
 });
+
+pauseButton.addEventListener('click', function(){
+    gamePause = !gamePause
+    if (!gamePause && !gameOver) animate()
+    console.log(gamePause)
+})
 
 function animate() {
     // this clears the cell, so only the highlighted cell will be shown
@@ -179,13 +189,19 @@ function animate() {
 // -----------------------------------------
 
 // this displays the lose screen
-    if (!gameOver) requestAnimationFrame(animate)
+    if (!gameOver && !gamePause) requestAnimationFrame(animate)
     if (gameOver){
         ctx.fillStyle = 'black';
         ctx.font = '90px Ariel';
         ctx.fillText('GAME OVER', 140, 275);
         ctx.fillText(`Final Score: ${score}`, 140, 415);
     }
+    if (gamePause){
+        ctx.fillStyle = 'black';
+        ctx.font = '90px Ariel';
+        ctx.fillText('PAUSED', 275, 330);
+    }
+    
 }
 
 
