@@ -17,16 +17,16 @@ const controlsBar = {
 function controlBarSetUp() {
     // This sets up the control bar at the top of the homepage canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillStyle = "gray"
+    ctx.fillStyle = "rgb(245 222 179 / 75%)"
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
 
     // This adds text to the control bar at the top of the homepage canvas
     var textTitle = "Bakers vs Ducks"
     textWidth = ctx.measureText(textTitle).width
-    ctx.font = "30px Arial";
-    ctx.fillStyle = "black";
+    ctx.font = "bold 40px Arial";
+    ctx.fillStyle = "rgb(95 95 95)";
     ctx.textAlign = "center";
-    ctx.fillText(textTitle, (canvas.width/2), controlsBar.height/2 + 10);
+    ctx.fillText(textTitle, (canvas.width/2), controlsBar.height/2 + 15);
     requestAnimationFrame(animate)
 }
 
