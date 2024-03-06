@@ -9,6 +9,7 @@ class Projectile {
         this.height = 40;
         this.power = dict.power;
         this.speed = 5;
+        this.maxRange = 3000;
 
         this.image = new Image()
         this.image.src = dict.image
@@ -16,6 +17,10 @@ class Projectile {
     // this simulates the projectile moving by speed amount of pixels every time
     update(){
         this.x += this.speed;
+        if (this.x > this.maxRange) {
+            let index = projectiles.indexOf(this);
+            projectiles.splice(index, 1);
+        }
     }
     // this draws the projectile image
     draw(){
@@ -24,6 +29,7 @@ class Projectile {
         ctx.beginPath();
     }
 }
+let projectileType = "boomerang"
 
 function handleProjectiles(){
     for (let i = 0; i < projectiles.length; i++){
@@ -33,8 +39,10 @@ function handleProjectiles(){
         for (let j = 0; j < enemies.length; j++){
             if (enemies[j] && projectiles[i] && collision(projectiles[i], enemies[j])){
                 enemies[j].health -= projectiles[i].power;
-                projectiles.splice(i, 1);
-                i--;
+                if (projectileType !== "boomerang"){
+                    projectiles.splice(i, 1);
+                    i--;
+                }
             }
         }
 
