@@ -27,11 +27,7 @@ class Defender {
     draw() {
         ctx.fillStyle = 'gold';
         ctx.font = '30px Arial';
-        if (this.chosenDefender === 1){
-            ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
-        } else if (this.chosenDefender === 2){
-            ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
-        }
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
 
     }
@@ -53,44 +49,82 @@ class Defender {
 
 const card1 = {
     x: 10,
-    y: 10,
-    width: 70,
-    height: 85
+    y: 510,
+    width: 80,
+    height: 90
 }
 
 const card2 = {
-    x: 100,
-    y: 10,
-    width: 70,
-    height: 85
+    x: 110,
+    y: 510,
+    width: 80,
+    height: 90
 }
+const card3 = {
+    x: 210,
+    y: 510,
+    width: 80,
+    height: 90
+}
+const card4 = {
+    x: 310,
+    y: 510,
+    width: 80,
+    height: 90
+}
+
 let chosenDefender = 1;
 
 function chooseDefender(){
     let card1stroke = 'black';
     let card2stroke = 'black';
-    console.log("here",chosenDefender)
+    let card3stroke = 'black';
+    let card4stroke = 'black';
     if (collision(mouse, card1) && mouse.clicked){
         chosenDefender = 1;
     } else if (collision(mouse, card2) && mouse.clicked){
         chosenDefender = 2;
+    } else if (collision(mouse, card3) && mouse.clicked){
+        chosenDefender = 3;
+    } else if (collision(mouse, card4) && mouse.clicked){
+        chosenDefender = 4;
     }
 
     if (chosenDefender === 1){
         card1stroke = 'red';
         card2stroke = 'black';
+        card3stroke = 'black';
+        card4stroke = 'black';
     }else if (chosenDefender === 2){
         card1stroke = 'black';
         card2stroke = 'red';
+        card3stroke = 'black';
+        card4stroke = 'black';
+    }else if (chosenDefender === 3){
+        card1stroke = 'black';
+        card2stroke = 'black';
+        card3stroke = 'red';
+        card4stroke = 'black';
+    }else if (chosenDefender === 4){
+        card1stroke = 'black';
+        card2stroke = 'black';
+        card3stroke = 'black';
+        card4stroke = 'red';
     }else {
         card1stroke = 'black';
         card2stroke = 'black';
+        card3stroke = 'black';
+        card4stroke = 'black';
     }
 
     image1 = new Image()
     image1.src = "../../images/entityImages/baguetteBazooka100.png"
     image2 = new Image()
     image2.src = "../../images/entityImages/croissantBoomerang100.png"
+    image3 = new Image()
+    image3.src = "../../images/entityImages/granaryGatling.png"
+    image4 = new Image()
+    image4.src = "../../images/entityImages/sliceSlinger.png"
     ctx.linewidth = 1;
     ctx.fillStyle = 'rgba(0,0,0,0.5)'
     ctx.fillRect(card1.x, card1.y, card1.height, card1.width);
@@ -101,6 +135,14 @@ function chooseDefender(){
     ctx.drawImage(image2, card2.x+5, card2.y, card2.width, card2.height-15);
     ctx.strokeStyle = card2stroke;
     ctx.strokeRect(card2.x, card2.y, card2.height, card2.width);
+    ctx.fillRect(card3.x, card3.y, card3.height, card3.width);
+    ctx.drawImage(image3, card3.x+5, card3.y, card3.width, card3.height-15);
+    ctx.strokeStyle = card3stroke;
+    ctx.strokeRect(card3.x, card3.y, card3.height, card3.width);
+    ctx.fillRect(card4.x, card4.y, card4.height, card4.width);
+    ctx.drawImage(image4, card4.x+5, card4.y, card4.width, card4.height-15);
+    ctx.strokeStyle = card4stroke;
+    ctx.strokeRect(card4.x, card4.y, card4.height, card4.width);
 }
 
 function handleDefenders(){

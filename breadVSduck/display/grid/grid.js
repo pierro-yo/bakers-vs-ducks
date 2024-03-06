@@ -16,9 +16,12 @@ let gameOver = false;
 let gamePause = false
 let score = 0;
 let defenderCost = 50;
-let defender1 = {health: 85, firerate: 250, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
-let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
+let baguette = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
+let croissant = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
+let gatling = {health: 35, firerate: 10, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2}
+let slice = {health: 40, firerate: 50, image: "../../images/entityImages/sliceSlinger.png", projectileImage: "../../images/projectileImages/slicedBread.png", projectilePower: 10}
 
+const defendersValues = [baguette, croissant, gatling, slice]
 const floatingMessages = [];
 const defenders = [];
 const enemies = [];
@@ -136,11 +139,16 @@ canvas.addEventListener('click', function(){
         let defenderCost = 50;
         if (numberOfResources >= defenderCost) {
             if (chosenDefender === 1){
-                defenders.push(new Defender(defender1, gridPositionX, gridPositionY));
+                defenders.push(new Defender(defendersValues[0], gridPositionX, gridPositionY));
                 numberOfResources -= defenderCost;
-        } else {
-            defenders.push(new Defender(defender2, gridPositionX, gridPositionY));
-            numberOfResources -= defenderCost;
+            } else if (chosenDefender === 2){
+                defenders.push(new Defender(defendersValues[1], gridPositionX, gridPositionY));
+                numberOfResources -= defenderCost;
+            } else if (chosenDefender === 3){
+                defenders.push(new Defender(defendersValues[2], gridPositionX, gridPositionY));
+                numberOfResources -= defenderCost;
+            } else if (chosenDefender === 4){
+                defenders.push(new Defender(defendersValues[3], gridPositionX, gridPositionY));
         }
         } else {
             floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
@@ -169,17 +177,17 @@ function animate() {
     frame++;   
 
     
-    ctx.clearRect(0, 500, canvas.width, canvas.height)
-    ctx.fillStyle = "rgb(70 70 70 / 56%)"
-    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
+    // ctx.clearRect(0, 500, canvas.width, canvas.height)
+    // ctx.fillStyle = "rgb(70 70 70 / 56%)"
+    // ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
 
 
     
 // playing around with putting a score in the top part
     ctx.fillStyle = "black"
     ctx.font = "25px Arial"
-    ctx.fillText(`Score: ${score}`, 190, 40)
-    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 190, 80)
+    ctx.fillText(`Score: ${score}`, 30, 40)
+    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 30, 80)
 // -----------------------------------------
 
 // this displays the lose screen

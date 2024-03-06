@@ -9,6 +9,7 @@ class Projectile {
         this.height = 40;
         this.power = dict.power;
         this.speed = 5;
+        this.maxRange = 300;
 
         this.image = new Image()
         this.image.src = dict.image

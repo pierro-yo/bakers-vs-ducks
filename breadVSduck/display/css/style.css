@@ -43,6 +43,9 @@ body {
     top: 10px;
     left:90%;
 }
+#card {
+    z-index: 3;
+}
 .button {
     width: 50px;
     height: 50px;
