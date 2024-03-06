@@ -191,6 +191,7 @@ function animate() {
 
     
 // playing around with putting a score in the top part
+    ctx.textAlign = "left"
     ctx.fillStyle = "black"
     ctx.font = "25px Arial"
     ctx.fillText(`Score: ${score}`, 190, 40)
@@ -200,16 +201,25 @@ function animate() {
 // this displays the lose screen
     if (!gameOver && !gamePause) requestAnimationFrame(animate)
     if (gameOver){
-        ctx.fillStyle = 'black';
-        ctx.font = '90px Ariel';
-        ctx.fillText('GAME OVER', 140, 275);
-        ctx.fillText(`Final Score: ${score}`, 140, 415);
-
+        ctx.fillStyle = "rgb(70 70 70 / 56%)"
+        ctx.fillRect(150, 175, 600, 225)
+        
+        ctx.fillStyle = "rgb(245 222 179 / 75%)";
+        ctx.font = '90px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('GAME OVER', canvas.width / 2, 280);
+        ctx.font = '60px Arial';
+        ctx.fillText(`Final Score: ${score}`, canvas.width / 2, 370);
+        pauseButton.style.display = "none";
+        
     }
     if (gamePause){
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = "rgb(70 70 70 / 56%)"
+        ctx.fillRect(250, 230, 400, 125)
+        ctx.textAlign = 'center'
+        ctx.fillStyle = "rgb(245 222 179 / 75%)";
         ctx.font = '90px Arial';
-        ctx.fillText('PAUSED', 275, 330);
+        ctx.fillText('PAUSED', canvas.width / 2, 330);
     }
 }
 
