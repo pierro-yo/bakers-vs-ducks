@@ -6,6 +6,7 @@ body {
     background-position-y: 6.1rem;
     background-position-x: 6.01rem; */
     background-color: black;
+    z-index: 1;
 }
 
 #canvas1, #gamePlay{
