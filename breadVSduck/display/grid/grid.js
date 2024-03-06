@@ -165,7 +165,7 @@ pauseButton.addEventListener('click', function(){
 
 function animate() {
 
-    if (frameDuration === 6000) {
+    if (frameDuration === 7200) {
         increaseFrameData();
         frameDuration = 0;
     }
