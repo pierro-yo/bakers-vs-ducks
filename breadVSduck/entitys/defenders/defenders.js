@@ -43,7 +43,7 @@ class Defender {
         if (this.shooting) {
             this.timer++;
             if (this.timer % this.firerate === 0) {
-                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower}, this.x + 70, this.y + 50));
+                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower}, this.x + 50, this.y + 50));
             }
         } else {
             this.timer = 0;

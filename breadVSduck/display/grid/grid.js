@@ -16,6 +16,10 @@ let gameOver = false;
 let gamePause = false
 let score = 0;
 let defenderCost = 50;
+
+let frameDuration = 0;
+let frameData = 1;
+
 let defender1 = {health: 85, firerate: 250, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
 let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
 
@@ -94,6 +98,11 @@ function handleGameGrid(){
     }
 }
 
+function increaseFrameData() {
+    frameData++;
+    console.log(frameData);
+}
+
 // function createGrid() {
 //     for (let y = cellSize; y < canvas.height - cellSize; y += cellSize) {
 //         gameRow = []
@@ -155,6 +164,11 @@ pauseButton.addEventListener('click', function(){
 })
 
 function animate() {
+
+    if (frameDuration === 6000) {
+        increaseFrameData();
+        frameDuration = 0;
+    }
     // this clears the cell, so only the highlighted cell will be shown
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // ctx.fillStyle = "gray"
@@ -166,9 +180,10 @@ function animate() {
     handleEnemies();
     chooseDefender()
     handleFloatingMessages();
-    frame++;   
 
-    
+    frameDuration += 1;
+    frame+=frameData;   
+
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "rgb(70 70 70 / 56%)"
     ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
@@ -197,7 +212,6 @@ function animate() {
         ctx.fillText('PAUSED', 275, 330);
     }
 }
-
 
 animate();
 
