@@ -4,7 +4,7 @@ class Cell {
         this.x = x
         this.y = y
         this.width = cellSize -1
-        this.height = cellSize -1
+        this.height = cellSize -0.5
     }
 // takes the arguments of horizontal and vertical values creates a rectangle of that size at the given coordinates
     draw() {
