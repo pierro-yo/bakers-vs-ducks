@@ -114,8 +114,12 @@ function handleDefenders(){
         }
         for (let j = 0; j < enemies.length; j++){
             if (defenders[i] && collision(defenders[i], enemies[j])){
+                enemies[j].timer ++
                 enemies[j].movement = 0;
-                defenders[i].health -= 1;
+                if(enemies[j].timer % enemies[j].attackRate === 0){
+                    console.log(enemies[j].attackDamage)
+                    defenders[i].health -= enemies[j].attackDamage;
+                }
             }
             if (defenders[i] && defenders[i].health <= 0){
                 defenders.splice(i, 1);
