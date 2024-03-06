@@ -38,6 +38,7 @@ body {
 }
 
 #pauseButton {
+    z-index: 3;
     position:relative;
     top: 10px;
     left:90%;
