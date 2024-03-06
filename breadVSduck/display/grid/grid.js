@@ -185,13 +185,18 @@ function animate() {
 // this displays the lose screen
     if (!gameOver && !gamePause) requestAnimationFrame(animate)
     if (gameOver){
+        ctx.fillStyle = "rgb(70 70 70 / 56%)"
+        ctx.fillRect(150, 175, 600, 225)
         ctx.fillStyle = 'black';
-        ctx.font = '90px Ariel';
-        ctx.fillText('GAME OVER', 140, 275);
-        ctx.fillText(`Final Score: ${score}`, 140, 415);
-
+        ctx.font = '90px Arial';
+        ctx.fillText('GAME OVER', 175, 275);
+        ctx.fillText(`Final Score: ${score}`, 175, 375);
+        pauseButton.style.display = "none";
+        
     }
     if (gamePause){
+        ctx.fillStyle = "rgb(70 70 70 / 56%)"
+        ctx.fillRect(250, 230, 400, 125)
         ctx.fillStyle = 'black';
         ctx.font = '90px Arial';
         ctx.fillText('PAUSED', 275, 330);
