@@ -15,6 +15,11 @@ class Enemy {
         this.health = 100;
         this.maxHealth = this.health;
 
+        this.gainedResources = dict.gainedResources
+        this.attackRate = dict.attackRate;
+        this.attackDamage = dict.attackDamage;
+        this.timer = 0
+
         this.image = new Image()
         this.image.src = "../../images/entityImages/secretEnemy.jpeg"
     }
@@ -30,10 +35,18 @@ class Enemy {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
 
         ctx.fillStyle = 'black';
-        ctx.font = '30px Orbitron';
-        ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+        ctx.font = '30px Arial';
+        ctx.fillText(Math.floor(this.health), this.x + 5, this.y + 20);
     }
 }
+
+let coneDuck = {speed: 0.5, health: 65, image: "../../images/entityImages/duckWithCone.png", gainedResources: 6, attackRate: 25, attackDamage: 5}
+let bucketDuck = {speed: 0.3, health: 75, image: "../../images/entityImages/bucketDuck.png", gainedResources: 7, attackRate: 25, attackDamage: 5}
+let bubbleDuck = {speed: 0.3, health: 85, image: "../../images/entityImages/bubblewrapDuck.png", gainedResources: 8, attackRate: 50, attackDamage: 10}
+let mallardDuck = {speed: 0.3, health: 50, image: "../../images/entityImages/regularDuck.png", gainedResources: 5, attackRate: 50, attackDamage: 5}
+let poleDuck = {speed: 0.6, health: 55, image: "../../images/entityImages/polevaultDuck.png", gainedResources: 5, attackRate: 50, attackDamage: 5}
+
+let enemyOptions = [coneDuck, bucketDuck, bubbleDuck, mallardDuck, poleDuck]
 
 function handleEnemies(){
     for (let i = 0; i < enemies.length; i++){

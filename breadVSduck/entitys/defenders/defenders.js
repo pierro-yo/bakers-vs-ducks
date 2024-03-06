@@ -26,7 +26,7 @@ class Defender {
     }
     draw() {
         ctx.fillStyle = 'gold';
-        ctx.font = '30px Orbitron';
+        ctx.font = '30px Arial';
         if (this.chosenDefender === 1){
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         } else if (this.chosenDefender === 2){
@@ -64,7 +64,7 @@ const card2 = {
     width: 70,
     height: 85
 }
-let chosenDefender = 2;
+let chosenDefender = 1;
 
 function chooseDefender(){
     let card1stroke = 'black';
@@ -114,8 +114,12 @@ function handleDefenders(){
         }
         for (let j = 0; j < enemies.length; j++){
             if (defenders[i] && collision(defenders[i], enemies[j])){
+                enemies[j].timer ++
                 enemies[j].movement = 0;
-                defenders[i].health -= 1;
+                if(enemies[j].timer % enemies[j].attackRate === 0){
+                    console.log(enemies[j].attackDamage)
+                    defenders[i].health -= enemies[j].attackDamage;
+                }
             }
             if (defenders[i] && defenders[i].health <= 0){
                 defenders.splice(i, 1);

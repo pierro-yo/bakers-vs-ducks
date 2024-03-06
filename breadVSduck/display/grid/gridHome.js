@@ -21,7 +21,7 @@ function controlBarSetUp() {
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height)
 
     // This adds text to the control bar at the top of the homepage canvas
-    var textTitle = "Bread vs Ducks"
+    var textTitle = "Bakers vs Ducks"
     textWidth = ctx.measureText(textTitle).width
     ctx.font = "30px Arial";
     ctx.fillStyle = "black";

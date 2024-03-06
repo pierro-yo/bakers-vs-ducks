@@ -18,7 +18,7 @@ class floatingMessage {
     draw(){
         ctx.globalAlpha = this.opacity;
         ctx.fillStyle = this.colour;
-        ctx.font = this.size + 'px Orbitron';
+        ctx.font = this.size + 'px Arial';
         ctx.fillText(this.value, this.x, this.y);
         ctx.globalAlpha = 1;
     }
