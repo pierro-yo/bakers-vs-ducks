@@ -71,28 +71,28 @@ class Defender {
 }
 
 const card1 = {
-    x: 10,
+    x: 75,
     y: 510,
-    width: 80,
+    width: 180,
     height: 90
 }
 
 const card2 = {
-    x: 110,
+    x: 265,
     y: 510,
-    width: 80,
+    width: 180,
     height: 90
 }
 const card3 = {
-    x: 210,
+    x: 455,
     y: 510,
-    width: 80,
+    width: 180,
     height: 90
 }
 const card4 = {
-    x: 310,
+    x: 645,
     y: 510,
-    width: 80,
+    width: 180,
     height: 90
 }
 
@@ -150,37 +150,49 @@ function chooseDefender(){
     image4.src = "../../images/entityImages/sliceSlinger.png"
     ctx.linewidth = 1;
     ctx.fillStyle = 'rgba(0,0,0,0.5)'
-    ctx.fillRect(card1.x, card1.y, card1.height, card1.width);
-    ctx.drawImage(image1, card1.x+5, card1.y, card1.width, card1.height-15)
+    ctx.fillRect(card1.x, card1.y, card1.width, card1.height);
+    ctx.drawImage(image1, card1.x+5, card1.y+5, card1.width/2, card1.height-15)
     ctx.strokeStyle = card1stroke;
-    ctx.strokeRect(card1.x, card1.y, card1.height, card1.width);
+    ctx.strokeRect(card1.x, card1.y, card1.width, card1.height);
     ctx.fillStyle = "rgb(245 222 179 / 75%)";
-    ctx.font = "bold 22px Arial"
-    ctx.fillText(`${defendersValues[0].cost}`, 70, 560)
+    ctx.font = "18px Arial"
+    ctx.fillText(`Cost: ${defendersValues[0].cost}`, 174, 530)
+    ctx.fillText(`HP: ${defendersValues[0].health}`, 174, 550)
+    ctx.fillText(`RNG: ${defendersValues[0].range/100}`, 174, 570)
+    ctx.fillText(`DMG: ${defendersValues[0].projectilePower}`, 174, 590)
     ctx.fillStyle = 'rgba(0,0,0,0.5)'
-    ctx.fillRect(card2.x, card2.y, card2.height, card2.width);
-    ctx.drawImage(image2, card2.x+5, card2.y, card2.width, card2.height-15);
+    ctx.fillRect(card2.x, card2.y, card2.width, card2.height);
+    ctx.drawImage(image2, card2.x+5, card2.y+5, card2.width/2, card2.height-15);
     ctx.strokeStyle = card2stroke;
-    ctx.strokeRect(card2.x, card2.y, card2.height, card2.width);
+    ctx.strokeRect(card2.x, card2.y, card2.width, card2.height);
     ctx.fillStyle = "rgb(245 222 179 / 75%)";
-    ctx.font = "bold 22px Arial"
-    ctx.fillText(`${defendersValues[1].cost}`, 170, 560)
+    ctx.font = "18px Arial"
+    ctx.fillText(`Cost: ${defendersValues[1].cost}`, 364, 530)
+    ctx.fillText(`HP: ${defendersValues[1].health}`, 364, 550)
+    ctx.fillText(`RNG: ${defendersValues[1].range/100}`, 364, 570)
+    ctx.fillText(`DMG: ${defendersValues[1].projectilePower}`, 364, 590)
     ctx.fillStyle = 'rgba(0,0,0,0.5)'
-    ctx.fillRect(card3.x, card3.y, card3.height, card3.width);
-    ctx.drawImage(image3, card3.x+5, card3.y, card3.width, card3.height-15);
+    ctx.fillRect(card3.x, card3.y, card3.width, card3.height);
+    ctx.drawImage(image3, card3.x+5, card3.y+5, card3.width/2, card3.height-15);
     ctx.strokeStyle = card3stroke;
-    ctx.strokeRect(card3.x, card3.y, card3.height, card3.width);
+    ctx.strokeRect(card3.x, card3.y, card3.width, card3.height);
     ctx.fillStyle = "rgb(245 222 179 / 75%)";
-    ctx.font = "bold 22px Arial"
-    ctx.fillText(`${defendersValues[2].cost}`, 270, 560)
+    ctx.font = "18px Arial"
+    ctx.fillText(`Cost: ${defendersValues[2].cost}`, 554, 530)
+    ctx.fillText(`HP: ${defendersValues[2].health}`, 554, 550)
+    ctx.fillText(`RNG: ${defendersValues[2].range/100}`, 554, 570)
+    ctx.fillText(`DMG: ${defendersValues[2].projectilePower}`, 554, 590)
     ctx.fillStyle = 'rgba(0,0,0,0.5)'
-    ctx.fillRect(card4.x, card4.y, card4.height, card4.width);
-    ctx.drawImage(image4, card4.x+5, card4.y, card4.width, card4.height-15);
+    ctx.fillRect(card4.x, card4.y, card4.width, card4.height);
+    ctx.drawImage(image4, card4.x+5, card4.y+5, card4.width/2, card4.height-15);
     ctx.strokeStyle = card4stroke;
-    ctx.strokeRect(card4.x, card4.y, card4.height, card4.width);
+    ctx.strokeRect(card4.x, card4.y, card4.width, card4.height);
     ctx.fillStyle = "rgb(245 222 179 / 75%)";
-    ctx.font = "bold 22px Arial"
-    ctx.fillText(`${defendersValues[3].cost}`, 370, 560)
+    ctx.font = "18px Arial"
+    ctx.fillText(`Cost: ${defendersValues[3].cost}`, 744, 530)
+    ctx.fillText(`HP: ${defendersValues[3].health}`, 744, 550)
+    ctx.fillText(`RNG: ${defendersValues[3].range/100}`, 744, 570)
+    ctx.fillText(`DMG: ${defendersValues[3].projectilePower}`, 744, 590)
 }
 
 function handleDefenders(){
