@@ -14,12 +14,11 @@ class Defender {
         this.firerate = dict.firerate;
         this.projectiles = [];
         this.timer = 0;
+        this.shootingRange = dict.range;
         this.chosenDefender = chosenDefender;
         this.boomerang = dict.boomerang
         this.projectileImage = dict.projectileImage
         this.projectilePower = dict.projectilePower
-        
-
         this.image = new Image()
         this.image.src = dict.image
         console.log(dict)
@@ -30,21 +29,43 @@ class Defender {
         ctx.font = '30px Arial';
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
-
     }
     // the update function for the defence is slightly different
     // here we are checking on update, if shooting is true
     // shooting is something that will be defined within the game logic under
     // a handle defender mechanic or something of the sort to allow this to happen
     update() {
-        if (this.shooting) {
+        if (this.isEnemyInRange()) { // Check if enemy is in range
+            this.shooting = true;
             this.timer++;
             if (this.timer % this.firerate === 0) {
-                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower, return: this.boomerang}, this.x + 70, this.y + 50));
+                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower,  return: this.boomerang, bakerXPosition: this.x, bakerYPosition: this.y}, this.x + 70, this.y + 50));
             }
         } else {
+            this.shooting = false;
             this.timer = 0;
         }
+    }
+    // isEnemyInRange() {
+    //     for (let j = 0; j < enemies.length; j++){
+    //         for (let i = 0; i < defenders.length; i++)
+    //         if (Math.abs(enemies[j].x - this.x) <= this.shootingRange && enemies[j].y === defenders[i].y) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+    isEnemyInRange() {
+        for (let j = 0; j < enemies.length; j++) {
+            // Check if an enemy is on the same row as the defender
+            if (enemies[j].y === this.y) {
+                // Check if the enemy is within the shooting range
+                if (Math.abs(enemies[j].x - this.x) <= this.shootingRange) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 

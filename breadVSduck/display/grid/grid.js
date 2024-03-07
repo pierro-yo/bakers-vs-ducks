@@ -20,10 +20,10 @@ let defenderCost = 50;
 let frameDuration = 0;
 let frameData = 1;
 
-let baguette = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35, boomerang: false}
-let croissant = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10, boomerang: true}
-let gatling = {health: 35, firerate: 10, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2, boomerang: false}
-let slice = {health: 40, firerate: 50, image: "../../images/entityImages/sliceSlinger.png", projectileImage: "../../images/projectileImages/slicedBread.png", projectilePower: 10, boomerang: false}
+let baguette = {health: 85, firerate: 100, range: 400, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35, boomerang: false}
+let croissant = {health: 65, firerate: 50, range: 400, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10, boomerang: true}
+let gatling = {health: 35, firerate: 10, range: 1000, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2, boomerang: false}
+let slice = {health: 40, firerate: 50, range: 1000, image: "../../images/entityImages/sliceSlinger.png", projectileImage: "../../images/projectileImages/slicedBread.png", projectilePower: 10, boomerang: false}
 
 const defendersValues = [baguette, croissant, gatling, slice]
 const floatingMessages = [];
