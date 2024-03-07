@@ -182,6 +182,7 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // ctx.fillStyle = "gray"
     // ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
+    
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "rgb(70 70 70 / 56%)"
     ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
@@ -196,9 +197,9 @@ function animate() {
     frameDuration += 1;
     frame+=frameData;   
 
-    ctx.clearRect(0, 500, canvas.width, canvas.height)
-    ctx.fillStyle = "rgb(70 70 70 / 56%)"
-    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
+    // ctx.clearRect(0, 500, canvas.width, canvas.height)
+    // ctx.fillStyle = "rgb(70 70 70 / 56%)"
+    // ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
 
 
     
