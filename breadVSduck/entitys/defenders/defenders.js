@@ -14,7 +14,9 @@ class Defender {
         this.firerate = dict.firerate;
         this.projectiles = [];
         this.timer = 0;
+        this.shootingRange = 400;
         this.chosenDefender = chosenDefender;
+        this.boomerang = dict.boomerang
         this.projectileImage = dict.projectileImage
         this.projectilePower = dict.projectilePower
         
@@ -36,14 +38,25 @@ class Defender {
     // shooting is something that will be defined within the game logic under
     // a handle defender mechanic or something of the sort to allow this to happen
     update() {
-        if (this.shooting) {
+        if (this.isEnemyInRange()) { // Check if enemy is in range
+            this.shooting = true;
             this.timer++;
-            if (this.timer % this.firerate === 0) {
-                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower}, this.x + 70, this.y + 50));
+            if (this.timer % this.firerate === 0){
+                projectiles.push(new Projectile({image: this.projectileImage, power: this.projectilePower, return: this.boomerang, bakerXPosition: this.x, bakerYPosition: this.y}, this.x + 70, this.y + 50));
             }
         } else {
+            this.shooting = false;
             this.timer = 0;
         }
+    }
+    isEnemyInRange() {
+        for (let j = 0; j < enemies.length; j++){
+            for (let i = 0; i < defenders.length; i++)
+            if (Math.abs(enemies[j].x - this.x) <= this.shootingRange && enemies[j].y === defenders[i].y) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

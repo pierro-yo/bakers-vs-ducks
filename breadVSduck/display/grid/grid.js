@@ -16,10 +16,10 @@ let gameOver = false;
 let gamePause = false
 let score = 0;
 let defenderCost = 50;
-let baguette = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
-let croissant = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
-let gatling = {health: 35, firerate: 10, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2}
-let slice = {health: 40, firerate: 50, image: "../../images/entityImages/sliceSlinger.png", projectileImage: "../../images/projectileImages/slicedBread.png", projectilePower: 10}
+let baguette = {health: 85, firerate: 100, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35, boomerang: false}
+let croissant = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10, boomerang: true}
+let gatling = {health: 35, firerate: 10, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2, boomerang: false}
+let slice = {health: 40, firerate: 50, image: "../../images/entityImages/sliceSlinger.png", projectileImage: "../../images/projectileImages/slicedBread.png", projectilePower: 10, boomerang: false}
 
 const defendersValues = [baguette, croissant, gatling, slice]
 const floatingMessages = [];
@@ -149,6 +149,7 @@ canvas.addEventListener('click', function(){
                 numberOfResources -= defenderCost;
             } else if (chosenDefender === 4){
                 defenders.push(new Defender(defendersValues[3], gridPositionX, gridPositionY));
+                numberOfResources -= defenderCost;
         }
         } else {
             floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));
@@ -167,6 +168,9 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // ctx.fillStyle = "gray"
     // ctx.fillRect(0, 0, controlsBarTop.width, controlsBarTop.height)
+    ctx.clearRect(0, 500, canvas.width, canvas.height)
+    ctx.fillStyle = "rgb(70 70 70 / 56%)"
+    ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
 
     handleGameGrid();
     handleDefenders();
@@ -177,9 +181,7 @@ function animate() {
     frame++;   
 
     
-    // ctx.clearRect(0, 500, canvas.width, canvas.height)
-    // ctx.fillStyle = "rgb(70 70 70 / 56%)"
-    // ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
+    
 
 
     
