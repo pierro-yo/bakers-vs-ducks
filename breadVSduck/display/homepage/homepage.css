@@ -7,10 +7,11 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 900px;
     height: 600px;
-    background: white;
+    transform: translate(-50%, -50%);
+    background-image: url(../../images/homepage/bakeryImage1.jpeg);
+    background-size: 900px 600px;
 }
 
 #homeGrid {
@@ -18,32 +19,44 @@ body {
 }
 
 #startGameButton {
-    position:relative;
+    position:fixed;
     left:40%;
-    top:45%;
-    align-items: center
-}
-
-#howToPlayButton {
-    position:relative;
-    left:65%;
-    /* top:45%; */
-}
-
-.button {
-    width: 150px;
-    height: 75px;
-    background: white;
+    top:40%;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    background: rgba(95, 95, 95, 0.8);
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
-    font-size: 20px;
+    color: wheat;
+    font-size: 40px;
     font-weight: 700;
     margin-top: 10px;
     margin-bottom: 10px;
     vertical-align: top;
+}
+
+#howToPlayButton {
+    position:fixed;
+    left:80%;
+    width: 150px;
+    height: 75px;
+    background:  rgba(95, 95, 95, 0.8);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    color: wheat;
+    font-size: 25px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    vertical-align: top;
+    /* top:45%; */
 }
 
 #howToPlayPopUp {

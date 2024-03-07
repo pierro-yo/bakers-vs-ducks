@@ -9,7 +9,8 @@
 <body>
     <div id="gamePlay">
     <canvas id="canvas1"></canvas>
-    <button id="pauseButton" class="button" onClick>=</button>
+    <button id="pauseButton" class="button" onClick>Pause</button>
+    <button id="quitButton" class="button" onclick="quitGame()">Quit</button>
     </div>
     <img id="img" alt="backgroundImage" src="../../images/grid/background.png"/>
     <script src="../../entitys/defenders/defenders.js"></script>
@@ -18,5 +19,11 @@
     <script src="../../entitys/resourceGainPopUp/floatingMessage.js"></script>
     <script src="../../entitys/cells/cell.js"></script>
     <script src="./grid.js"></script>
+    <script>
+        function quitGame() {
+            console.log("Game ended");
+            window.location.href = "../homepage/homepage.html"
+        }
+    </script>
 </body>
 </html>

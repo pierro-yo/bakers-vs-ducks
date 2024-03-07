@@ -2,23 +2,30 @@
 var howToPlayButton = document.getElementById("howToPlayButton");
 var popupWindow = document.getElementById("howToPlayPopUp");
 var closeButton = document.getElementById("close-button");
+var startGameButton = document.getElementById("startGameButton")
 
 // Shows the pop-up window when the button is clicked
 howToPlayButton.addEventListener("click", function (event) {
     event.preventDefault();
     // Popup window is displayed when button is clicked
     popupWindow.style.display = "block";
-    // How to play button is hidden when popup window is shown
+    // How to play button and Start Game button are hidden when popup window is shown
     howToPlayButton.style.display = "none";
+    startGameButton.style.display = "none";
+    // Calls getDisplayText when the How to play button is clicked
+    howToPlay.getDisplayText();
+
 });
 
 // Hides the pop-up window when the close button is clicked
 closeButton.addEventListener("click", function () {
     // Popup window is hidden when close button is clicked
     popupWindow.style.display = "none";
-    // How to play button is shown when popup window is closed
+    // How to play button and Start Game button are shown when popup window is closed
     howToPlayButton.style.display = "block";
+    startGameButton.style.display = "block";
     // Set the current Page index back to 0 when the instructions are closed
+    howToPlay.currentPageIndex = 0
 });
 
 // Class to set up the functions and variables needed to display the instructions
@@ -80,5 +87,3 @@ class HowToPlay {
 }
 // Creates a new instance of the HowToPlay
 howToPlay = new HowToPlay();
-// Calls getDisplayText when the html file is first loaded
-howToPlay.getDisplayText();
