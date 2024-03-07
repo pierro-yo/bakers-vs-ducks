@@ -46,7 +46,9 @@ body {
     top: 10px;
     left:90%;
 }
-
+#card {
+    z-index: 3;
+}
 .button {
     z-index: 3;
     position: fixed;
