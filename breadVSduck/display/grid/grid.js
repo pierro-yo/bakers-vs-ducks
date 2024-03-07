@@ -16,6 +16,10 @@ let gameOver = false;
 let gamePause = false
 let score = 0;
 let defenderCost = 50;
+
+let frameDuration = 0;
+let frameData = 1;
+
 let defender1 = {health: 85, firerate: 250, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35}
 let defender2 = {health: 65, firerate: 50, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10}
 
@@ -94,6 +98,11 @@ function handleGameGrid(){
     }
 }
 
+function increaseFrameData() {
+    frameData++;
+    console.log(frameData);
+}
+
 // function createGrid() {
 //     for (let y = cellSize; y < canvas.height - cellSize; y += cellSize) {
 //         gameRow = []
@@ -155,6 +164,11 @@ pauseButton.addEventListener('click', function(){
 })
 
 function animate() {
+
+    if (frameDuration === 7200) {
+        increaseFrameData();
+        frameDuration = 0;
+    }
     // this clears the cell, so only the highlighted cell will be shown
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // ctx.fillStyle = "gray"
@@ -166,9 +180,10 @@ function animate() {
     handleEnemies();
     chooseDefender()
     handleFloatingMessages();
-    frame++;   
 
-    // Bottom controls bar
+    frameDuration += 1;
+    frame+=frameData;   
+
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "rgb(70 70 70 / 56%)"
     ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
@@ -178,38 +193,58 @@ function animate() {
     ctx.strokeRect(0, 100, 900, 400);
     
 // playing around with putting a score in the top part
-    ctx.textAlign = "left"
-    ctx.fillStyle = "black"
-    ctx.font = "25px Arial"
-    ctx.fillText(`Score: ${score}`, 190, 40)
-    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 190, 80)
+    ctx.strokeStyle = "rgb(70 70 70 / 56%)";
+    ctx.fillStyle = "rgb(70 70 70 / 56%)"
+    ctx.beginPath();
+    ctx.roundRect(0, 10, 350, 75, 30);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.fillStyle = "rgb(245 222 179 / 75%)";
+    ctx.font = "bold 25px Arial"
+    ctx.fillText(`Score: ${score}`, 20, 40)
+    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 20, 72)
+
+    ctx.fillStyle = "rgb(0 0 0 / 100%)";
+    ctx.fillText(`Wave: ${frameData}`, 400, 60);
 // -----------------------------------------
 
 // this displays the lose screen
     if (!gameOver && !gamePause) requestAnimationFrame(animate)
     if (gameOver){
+
+        ctx.strokeStyle = "rgb(70 70 70 / 56%)";
         ctx.fillStyle = "rgb(70 70 70 / 56%)"
-        ctx.fillRect(150, 175, 600, 225)
+        ctx.beginPath();
+        ctx.roundRect(150, 175, 600, 225, 30);
+        ctx.stroke();
+        ctx.fill();
         
         ctx.fillStyle = "rgb(245 222 179 / 75%)";
-        ctx.font = '90px Arial';
+        ctx.font = 'bold 90px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('GAME OVER', canvas.width / 2, 280);
-        ctx.font = '60px Arial';
+        ctx.font = 'bold 60px Arial';
         ctx.fillText(`Final Score: ${score}`, canvas.width / 2, 370);
         pauseButton.style.display = "none";
         
     }
+    // this displays the paused game text
     if (gamePause){
+        ctx.strokeStyle = "rgb(70 70 70 / 56%)";
         ctx.fillStyle = "rgb(70 70 70 / 56%)"
-        ctx.fillRect(250, 230, 400, 125)
+        ctx.beginPath();
+        ctx.roundRect(250, 230, 400, 125, 30);
+        ctx.stroke();
+        ctx.fill();
+        // ctx.fillStyle = "rgb(70 70 70 / 56%)"
+        // ctx.fillRect(250, 230, 400, 125)
         ctx.textAlign = 'center'
         ctx.fillStyle = "rgb(245 222 179 / 75%)";
-        ctx.font = '90px Arial';
+        ctx.font = 'bold 90px Arial';
         ctx.fillText('PAUSED', canvas.width / 2, 330);
     }
 }
-
 
 animate();
 

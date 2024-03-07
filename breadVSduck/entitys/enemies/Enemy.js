@@ -69,6 +69,13 @@ function handleEnemies(){
             enemies.splice(i, 1);
             i--;
         }
+        // Code to check if an enemy has collided with a defender, and if not, ensuring the 
+        // enemy movement is set to it's speed (this covers a check for once a defender has dies and sets enemy movement again)
+        for (let j = 0; j < defenders.length; j++) {
+            if (enemies[i] && !collision(defenders[j], enemies[i])) {
+                enemies[i].movement = enemies[i].speed
+            }
+        }
     }
     if (frame % enemiesInterval === 0){
         let verticalPosition = Math.floor(Math.random() * 4 + 1) * cellSize + cellGap;
