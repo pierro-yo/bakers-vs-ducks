@@ -169,7 +169,7 @@ canvas.addEventListener('click', function(){
 pauseButton.addEventListener('click', function(){
     gamePause = !gamePause
     if (!gamePause && !gameOver) animate()
-    console.log(gamePause)
+    ctx.textAlign = 'left'
 })
 
 function animate() {
@@ -209,17 +209,18 @@ function animate() {
     ctx.strokeStyle = "rgb(70 70 70 / 56%)";
     ctx.fillStyle = "rgb(70 70 70 / 56%)"
     ctx.beginPath();
-    ctx.roundRect(0, 10, 350, 75, 30);
+    ctx.roundRect(0, 10, 350, 85, 30);
     ctx.stroke();
     ctx.fill();
 
     ctx.fillStyle = "rgb(245 222 179 / 75%)";
-    ctx.font = "bold 25px Arial"
-    ctx.fillText(`Score: ${score}`, 20, 40)
-    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 20, 72)
+    ctx.font = "bold 22px Arial"
+    ctx.fillText(`Score: ${score}`, 20, 35)
+    ctx.fillText(`Level: ${frameData}`, 20, 85);
+    ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 20, 60)
 
     ctx.fillStyle = "rgb(0 0 0 / 100%)";
-    ctx.fillText(`Wave: ${frameData}`, 400, 60);
+    
 // -----------------------------------------
 
 // this displays the lose screen
