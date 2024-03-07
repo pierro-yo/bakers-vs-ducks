@@ -20,10 +20,10 @@ let defenderCost = 50;
 let frameDuration = 0;
 let frameData = 1;
 
-let baguette = {health: 85, firerate: 100, range: 400, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35, boomerang: false}
-let croissant = {health: 65, firerate: 50, range: 400, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10, boomerang: true}
-let gatling = {health: 35, firerate: 10, range: 1000, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2, boomerang: false}
-let slice = {health: 40, firerate: 50, range: 1000, image: "../../images/entityImages/sliceSlinger.png", projectileImage: "../../images/projectileImages/slicedBread.png", projectilePower: 10, boomerang: false}
+let baguette = {defenderId: 1, health: 85, firerate: 100, range: 400, image: "../../images/entityImages/baguetteBazooka100.png", projectileImage: "../../images/projectileImages/baguedited.png", projectilePower: 35, boomerang: false, cost: 50}
+let croissant = {defenderId: 2, health: 65, firerate: 50, range: 400, image: "../../images/entityImages/croissantBoomerang100.png", projectileImage: "../../images/projectileImages/croissant.png", projectilePower: 10, boomerang: true, cost: 50}
+let gatling = {defenderId: 3, health: 35, firerate: 10, range: 1000, image: "../../images/entityImages/granaryGatling.png", projectileImage: "../../images/projectileImages/sunflowerSeed.png", projectilePower: 2, boomerang: false, cost: 50}
+let slice = {defenderId: 4, health: 40, firerate: 50, range: 1000, image: "../../images/entityImages/sliceSlinger.png", projectileImage: "../../images/projectileImages/slicedBread.png", projectilePower: 10, boomerang: false, cost: 40}
 
 const defendersValues = [baguette, croissant, gatling, slice]
 const floatingMessages = [];
@@ -145,20 +145,19 @@ canvas.addEventListener('click', function(){
         for (let i = 0; i < defenders.length; i++){
             if (defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) return;
             }
-        let defenderCost = 50;
         if (numberOfResources >= defenderCost) {
-            if (chosenDefender === 1){
+            if (chosenDefender === 1 && numberOfResources >= defendersValues[0].cost){
                 defenders.push(new Defender(defendersValues[0], gridPositionX, gridPositionY));
-                numberOfResources -= defenderCost;
-            } else if (chosenDefender === 2){
+                numberOfResources -= defendersValues[0].cost;
+            } else if (chosenDefender === 2 && numberOfResources >= defendersValues[1].cost){
                 defenders.push(new Defender(defendersValues[1], gridPositionX, gridPositionY));
-                numberOfResources -= defenderCost;
-            } else if (chosenDefender === 3){
+                numberOfResources -= defendersValues[1].cost;
+            } else if (chosenDefender === 3 && numberOfResources >= defendersValues[2].cost){
                 defenders.push(new Defender(defendersValues[2], gridPositionX, gridPositionY));
-                numberOfResources -= defenderCost;
-            } else if (chosenDefender === 4){
+                numberOfResources -= defendersValues[2].cost;
+            } else if (chosenDefender === 4 && numberOfResources >= defendersValues[3].cost){
                 defenders.push(new Defender(defendersValues[3], gridPositionX, gridPositionY));
-                numberOfResources -= defenderCost;
+                numberOfResources -= defendersValues[3].cost;
         }
         } else {
             floatingMessages.push(new floatingMessage("Not enough bread crumbs", mouse.x, mouse.y, 20, 'black'));

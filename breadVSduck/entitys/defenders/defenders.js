@@ -21,6 +21,7 @@ class Defender {
         this.projectilePower = dict.projectilePower
         this.image = new Image()
         this.image.src = dict.image
+        this.cost = dict.cost
         console.log(dict)
         console.log("class", this.chosenDefender)
     }
@@ -153,18 +154,33 @@ function chooseDefender(){
     ctx.drawImage(image1, card1.x+5, card1.y, card1.width, card1.height-15)
     ctx.strokeStyle = card1stroke;
     ctx.strokeRect(card1.x, card1.y, card1.height, card1.width);
+    ctx.fillStyle = "rgb(245 222 179 / 75%)";
+    ctx.font = "bold 22px Arial"
+    ctx.fillText(`${defendersValues[0].cost}`, 70, 560)
+    ctx.fillStyle = 'rgba(0,0,0,0.5)'
     ctx.fillRect(card2.x, card2.y, card2.height, card2.width);
     ctx.drawImage(image2, card2.x+5, card2.y, card2.width, card2.height-15);
     ctx.strokeStyle = card2stroke;
     ctx.strokeRect(card2.x, card2.y, card2.height, card2.width);
+    ctx.fillStyle = "rgb(245 222 179 / 75%)";
+    ctx.font = "bold 22px Arial"
+    ctx.fillText(`${defendersValues[1].cost}`, 170, 560)
+    ctx.fillStyle = 'rgba(0,0,0,0.5)'
     ctx.fillRect(card3.x, card3.y, card3.height, card3.width);
     ctx.drawImage(image3, card3.x+5, card3.y, card3.width, card3.height-15);
     ctx.strokeStyle = card3stroke;
     ctx.strokeRect(card3.x, card3.y, card3.height, card3.width);
+    ctx.fillStyle = "rgb(245 222 179 / 75%)";
+    ctx.font = "bold 22px Arial"
+    ctx.fillText(`${defendersValues[2].cost}`, 270, 560)
+    ctx.fillStyle = 'rgba(0,0,0,0.5)'
     ctx.fillRect(card4.x, card4.y, card4.height, card4.width);
     ctx.drawImage(image4, card4.x+5, card4.y, card4.width, card4.height-15);
     ctx.strokeStyle = card4stroke;
     ctx.strokeRect(card4.x, card4.y, card4.height, card4.width);
+    ctx.fillStyle = "rgb(245 222 179 / 75%)";
+    ctx.font = "bold 22px Arial"
+    ctx.fillText(`${defendersValues[3].cost}`, 370, 560)
 }
 
 function handleDefenders(){
