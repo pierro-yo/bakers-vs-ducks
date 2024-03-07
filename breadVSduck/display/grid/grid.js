@@ -168,12 +168,14 @@ function animate() {
     handleFloatingMessages();
     frame++;   
 
-    
+    // Bottom controls bar
     ctx.clearRect(0, 500, canvas.width, canvas.height)
     ctx.fillStyle = "rgb(70 70 70 / 56%)"
     ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
 
-
+// Border around playable grid
+    ctx.strokeStyle = "silver";
+    ctx.strokeRect(0, 100, 900, 400);
     
 // playing around with putting a score in the top part
     ctx.textAlign = "left"
