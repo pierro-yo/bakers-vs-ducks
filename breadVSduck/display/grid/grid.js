@@ -188,7 +188,9 @@ function animate() {
     ctx.fillStyle = "rgb(70 70 70 / 56%)"
     ctx.fillRect(0, 500, controlsBarBottom.width, controlsBarBottom.height)
 
-
+// Border around playable grid
+    ctx.strokeStyle = "silver";
+    ctx.strokeRect(0, 100, 900, 400);
     
 // playing around with putting a score in the top part
     ctx.strokeStyle = "rgb(70 70 70 / 56%)";

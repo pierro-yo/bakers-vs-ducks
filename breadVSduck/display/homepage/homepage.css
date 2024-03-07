@@ -63,7 +63,7 @@ body {
     position: fixed;
     width: 700px;
     height: 400px;
-    background: green;
+    background: rgba(209, 209, 209, 0.737);
     border: 1px solid black;
     margin: auto;
     top: 150px;
@@ -88,7 +88,8 @@ body {
 #instructions {
     font-family: Arial;
     padding: 10px;
-    text-align: center
+    text-align: center;
+    font-size: 22px;
 }
 
 #displayText {
