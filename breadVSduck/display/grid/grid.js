@@ -196,6 +196,8 @@ function animate() {
     ctx.font = "25px Arial"
     ctx.fillText(`Score: ${score}`, 190, 40)
     ctx.fillText(`Bread Crumbs: ${numberOfResources}`, 190, 80)
+
+    ctx.fillText(`Wave: ${frameData}`, 400, 60)
 // -----------------------------------------
 
 // this displays the lose screen
