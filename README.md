@@ -28,7 +28,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/pierro-yo/bakers-vs-ducks">
-    <img src="breadVSduck/images/homepage/bakeryImage1.jpeg" alt="Logo" width="80" height="80">
+    <img src="READMEImages/image_720.png" alt="Logo" width="300" height="200">
   </a>
 
   <h3 align="center">Bakers VS Ducks</h3>
