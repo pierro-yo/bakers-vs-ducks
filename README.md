@@ -183,7 +183,9 @@ The Background for the homepage:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-_Video Demo_
+
+https://github.com/pierro-yo/bakers-vs-ducks/assets/96428868/6be1deaa-5dff-41c6-9030-c8e55bb492b4
+
 
 
 
